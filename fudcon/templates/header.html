@@ -1,0 +1,44 @@
+<div class="header">
+    <div class="row">
+        <div class="brand-logo large-8 columns">
+            <img class="logo" src="{{ url_for('static', filename='img/logo.png') }}">
+        </div>
+        <div class="login large-4 columns">
+        <span id="login-info">
+            {% if g.fas_user %}
+            <span class="text">logged in as </span>
+            <a href="">{{ g.fas_user.username }}</a>
+            <a href="{{ url_for('auth.auth_logout') }}">Logout</a>
+            {% else %}
+           <a href=""><a href="{{ url_for('auth.auth_login') }}?next={{request.url}}">Login</a>
+           {% endif %}
+        </span>
+        </div>
+    </div>
+</div>
+
+<div class="nav">
+        <div class="row">
+        <div class="menu">
+            <ul>
+            {% if request.endpoint.startswith('admin') %}
+            <li><a href="{{ url_for('admin.index')}} ">Home</a></li>
+            <li><a href="">Pages</a></li>
+            <li><a href="">Speakers</a></li>
+            <li><a href="">Sessions</a></li>
+
+            {% else %}
+            <li><a href="">Home</a></li>
+            <li><a href="">Speakers</a></li>
+            <li><a href="">Sessions</a></li>
+            <li><a href="">Venue</a></li>
+            <li><a href="">Accomodation</a></li>
+            <li><a href="">Sponsors</a></li>
+            {% if is_admin %}
+            <li><a href="{{ url_for('admin.index') }}">Admin</a></li>
+            {% endif %}
+            {% endif %}
+        </ul>
+        </div>
+    </div>
+</div>

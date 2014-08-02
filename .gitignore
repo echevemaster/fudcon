@@ -1,38 +1,40 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
+# Emacs rope configuration
+.ropeproject
+.project
+.pydevproject
+.settings
 
+# Python
+*.py[co]
+
+## Packages
+=======
+*.py[cod]
+*.pyc
 # C extensions
 *.so
 
-# Distribution / packaging
-.Python
-env/
-bin/
-build/
-develop-eggs/
-dist/
-eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-*.egg-info/
-.installed.cfg
-*.egg
+
+## Installer logs
+pip-log.txt
+
+## Unit test / coverage reports
+.coverage
+.tox
+
+## Translations
+*.mo
+
+# DB Sqlite
+*.db
 
 # Installer logs
 pip-log.txt
-pip-delete-this-directory.txt
 
 # Unit test / coverage reports
-htmlcov/
-.tox/
 .coverage
-.cache
+.tox
 nosetests.xml
-coverage.xml
 
 # Translations
 *.mo
@@ -42,13 +44,8 @@ coverage.xml
 .project
 .pydevproject
 
-# Rope
-.ropeproject
+*.sublime*
 
-# Django stuff:
-*.log
-*.pot
-
-# Sphinx documentation
-docs/_build/
-
+# Temp 
+*~
+*.*~

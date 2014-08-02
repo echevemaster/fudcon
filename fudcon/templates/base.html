@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en" >
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %} {{ title_site }} - {{title}} {% endblock %}</title>
+
+  {% block foundation_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/foundation.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/foundation-icons.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive-tables.css') }}">
+  {% endblock %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+
+  {% block css_custom %}
+
+  {% endblock %}
+</head>
+<body>
+  <div class="off-canvas-wrap" data-offcanvas>
+    <div class="inner-wrap">
+        {% include 'header.html' %}
+     <section class="main-section">
+        {% block content %}
+
+
+        {% endblock %}
+     </section>
+    <a class="exit-off-canvas"></a>
+        {% include 'footer.html' %}
+   </div>
+  </div>
+  <script src="{{ url_for('static', filename='js/vendor/jquery.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/vendor/modernizr.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/foundation.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/foundation/foundation.offcanvas.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/foundation/foundation.topbar.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/foundation/foundation.dropdown.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/responsive-tables.js') }}"></script>
+ {% block js_custom %}
+
+ {% endblock %}
+  <script>
+    $(document).foundation();
+  </script>
+</body>
+</html>

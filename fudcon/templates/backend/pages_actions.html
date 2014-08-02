@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block css_custom %}
+
+{% endblock %}
+
+{% block js_custom %}
+<script src="{{ url_for('static', filename='js/wysihtml5-0.3.0.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+
+{% from "_formhelpers.html" import render_field %}
+
+
+<div class="row">
+    <h4> {{ title }} </h4>
+    <div class="container large-12 columns">
+            <form method="post" action="">
+            <fieldset>
+            <legend></legend>
+            {{ form.hidden_tag() }}
+            {{ render_field(form.title) }}
+            {{ render_field(form.description)}}
+            {{ render_field(form.content_type)}}
+            {{ render_field(form.is_on_user_menu) }}
+            {{ render_field(form.tag)}}
+            {{ render_field(form.active)}}
+            </fieldset>
+            <input type="submit" class="button" value="Send"/>
+   </form>
+
+    </div>
+</div>
+
+
+{% endblock %}
