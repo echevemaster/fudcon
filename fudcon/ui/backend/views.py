@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import (Blueprint,
                    redirect, render_template,
-                   url_for, flash)
+                   url_for, flash, request)
 from fudcon.app import is_fudcon_admin, app
 from fudcon.database import db
 from fudcon.modules.contents.forms import AddPage
@@ -33,6 +33,7 @@ def pages(page=1):
 
 
 @bp.route('/pages/add', methods=['GET', 'POST'])
+@is_fudcon_admin
 def add_page():
     """ Add page to the application
     """
@@ -70,3 +71,14 @@ def edit_page(page_id):
     return render_template('backend/pages_actions',
                            form=form,
                            action=action)
+
+
+@bp.route('/pages/delete/<int:page_id>', methods=['GET', 'POST'])
+@is_fudcon_admin
+def delete_page(page_id):
+    query_delete_page = Content.query.filter(
+        Content.id == page_id).first_or_404()
+    db.session.delete(query_delete_page)
+    db.session.commit()
+    flash('Record deleted')
+    return redirect(request.referrer)
