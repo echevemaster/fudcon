@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block css_custom %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="large-12 columns">
+        <h4>List pages</h4>
+    <table class="responsive">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for page in pages.items %}
+        <tr>
+            <td>{{ page.title }} </td>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div>
+
+{% endblock %}
+
