@@ -11,6 +11,7 @@ bp = Blueprint('admin', __name__, url_prefix='/admin')
 
 items_per_page = app.config['ITEMS_PER_PAGE']
 
+
 @bp.route('/', methods=['GET', 'POST'])
 @is_fudcon_admin
 def index():
@@ -20,13 +21,12 @@ def index():
                            title='Administration')
 
 
-@bp.route('/pages', methods=['GET','POST'])
+@bp.route('/pages', methods=['GET', 'POST'])
 @bp.route('pages/<int:page>', methods=['GET', 'POST'])
 @is_fudcon_admin
 def pages(page=1):
     paginate_params = (page, items_per_page, False)
-    queryset =  Content.query.paginate(*paginate_params)
-    
+    queryset = Content.query.paginate(*paginate_params)
     return render_template('backend/pages.html',
                            title='List pages',
                            pages=queryset)
@@ -52,4 +52,21 @@ def add_page():
     return render_template('backend/pages_actions.html',
                            form=form,
                            title='Add page',
+                           action=action)
+
+
+@bp.route('/pages/edit/<int:page_id>', methods=['GET', 'POST'])
+@is_fudcon_admin
+def edit_page(page_id):
+    query_edit_page = Content.query.filter(Content.id ==
+                                           page_id).first_or_404()
+    form = AddPage(obj=query_edit_page)
+    action = url_for('admin.edit_page', page_id=page_id)
+    if form.validate_on_submit():
+        form.populate_obj(query_edit_page)
+        db.session.commit()
+        flash('Page edited')
+        return redirect(url_for('admin.page'))
+    return render_template('backend/pages_actions',
+                           form=form,
                            action=action)
