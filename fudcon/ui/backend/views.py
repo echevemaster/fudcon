@@ -2,13 +2,14 @@
 from flask import (Blueprint,
                    redirect, render_template,
                    url_for, flash)
-from fudcon.app import is_fudcon_admin
+from fudcon.app import is_fudcon_admin, app
 from fudcon.database import db
 from fudcon.modules.contents.forms import AddPage
 from fudcon.modules.contents.models import Content
 
 bp = Blueprint('admin', __name__, url_prefix='/admin')
 
+items_per_page = app.config['ITEMS_PER_PAGE']
 
 @bp.route('/', methods=['GET', 'POST'])
 @is_fudcon_admin
@@ -17,6 +18,18 @@ def index():
     """
     return render_template('backend/index.html',
                            title='Administration')
+
+
+@bp.route('/pages', methods=['GET','POST'])
+@bp.route('pages/<int:page>', methods=['GET', 'POST'])
+@is_fudcon_admin
+def pages(page=1):
+    paginate_params = (page, items_per_page, False)
+    queryset =  Content.query.paginate(*paginate_params)
+    
+    return render_template('backend/pages.html',
+                           title='List pages',
+                           pages=queryset)
 
 
 @bp.route('/pages/add', methods=['GET', 'POST'])
