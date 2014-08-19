@@ -18,6 +18,7 @@ class Config(object):
     FAS_CHECK_CERT = True
     FUDCON_NAME = 'Fudcon Managua'
     ADMIN_GROUP = ['provenpackager']
+    ITEMS_PER_PAGE = 10
 
 
 class ProductionConfig(Config):
