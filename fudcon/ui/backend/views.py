@@ -49,7 +49,7 @@ def add_page():
         db.session.add(content)
         db.session.commit()
         flash('Page created')
-        return redirect(url_for('admin.page'))
+        return redirect(url_for('admin.pages'))
     return render_template('backend/pages_actions.html',
                            form=form,
                            title='Add page',
@@ -67,8 +67,8 @@ def edit_page(page_id):
         form.populate_obj(query_edit_page)
         db.session.commit()
         flash('Page edited')
-        return redirect(url_for('admin.page'))
-    return render_template('backend/pages_actions',
+        return redirect(url_for('admin.pages'))
+    return render_template('backend/pages_actions.html',
                            form=form,
                            action=action)
 
