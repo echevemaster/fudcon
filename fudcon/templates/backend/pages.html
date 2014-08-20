@@ -3,6 +3,10 @@
 
 {% endblock %}
 
+{% block js_custom %}
+<script src="{{ url_for('static', filename='js/delete_items.js') }}"></script>
+{% endblock %}
+
 {% block content %}
 
 <div class="row">
@@ -20,6 +24,16 @@
         {% for page in pages.items %}
         <tr>
             <td>{{ page.title }} </td>
+            <td>
+                <a href="{{ url_for('admin.edit_page', page_id=page.id) }}">
+                    <i class="fi-page-edit"></i>
+                </a>
+            </td>
+            <td>
+                <a href="{{ url_for('admin.delete_page', page_id=page.id) }}" class="delete">
+                    <i class="fi-page-delete"></i>
+                </a>
+            </td>
         {% endfor %}
         </tbody>
     </table>
