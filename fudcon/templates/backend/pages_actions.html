@@ -1,10 +1,27 @@
 {% extends "base.html" %}
 {% block css_custom %}
-
+<link rel="stylesheet" href="{{ url_for('static', filename='css/raptor-front-end.min.css') }}">
 {% endblock %}
 
 {% block js_custom %}
-<script src="{{ url_for('static', filename='js/wysihtml5-0.3.0.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/raptor.min.js') }}"></script>
+<script>
+     $('#description').raptor({
+             autoenable: true, 
+             enableUi: false,
+             unloadWarning: false,
+             classes: 'raptor-editing-inline',
+             plugins: {
+                 textBold: true,
+                 textItalic: true,
+                 dock: {
+                     docked: true,
+                     dockToElement: true
+                 },
+                 unsavedEditWarning: false
+             },
+             });
+</script>
 {% endblock %}
 
 {% block content %}
