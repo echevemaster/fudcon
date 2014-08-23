@@ -52,7 +52,7 @@ def add_page():
         return redirect(url_for('admin.pages'))
     return render_template('backend/pages_actions.html',
                            form=form,
-                           title='Add page',
+                           title=u'Añadir página',
                            action=action)
 
 
@@ -69,6 +69,7 @@ def edit_page(page_id):
         flash('Page edited')
         return redirect(url_for('admin.pages'))
     return render_template('backend/pages_actions.html',
+                           title=u'Editar página',
                            form=form,
                            action=action)
 

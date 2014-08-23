@@ -1,26 +1,17 @@
 {% extends "base.html" %}
 {% block css_custom %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/raptor-front-end.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/froala_editor.min.css') }}">
 {% endblock %}
 
 {% block js_custom %}
-<script type="text/javascript" src="{{ url_for('static', filename='js/raptor.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/froala_editor.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/langs/es.js') }}"></script>
 <script>
-     $('#description').raptor({
-             autoenable: true, 
-             enableUi: false,
-             unloadWarning: false,
-             classes: 'raptor-editing-inline',
-             plugins: {
-                 textBold: true,
-                 textItalic: true,
-                 dock: {
-                     docked: true,
-                     dockToElement: true
-                 },
-                 unsavedEditWarning: false
-             },
-             });
+    $(function() {
+            $('#description').editable({inlineMode:false,
+                                        language:'es'})
+            });
 </script>
 {% endblock %}
 
@@ -43,7 +34,7 @@
             {{ render_field(form.tag)}}
             {{ render_field(form.active)}}
             </fieldset>
-            <input type="submit" class="button" value="Send"/>
+            <input type="submit" class="button" value="Enviar"/>
    </form>
 
     </div>

@@ -6,9 +6,9 @@
         <div class="login large-4 columns">
         <span id="login-info">
             {% if g.fas_user %}
-            <span class="text">logged in as </span>
+            <span class="text">Identificado como</span>
             <a href="">{{ g.fas_user.username }}</a>
-            <a href="{{ url_for('auth.auth_logout') }}">Logout</a>
+            <a href="{{ url_for('auth.auth_logout') }}">Salir</a>
             {% else %}
            <a href=""><a href="{{ url_for('auth.auth_login') }}?next={{request.url}}">Login</a>
            {% endif %}
@@ -23,16 +23,16 @@
             <ul>
             {% if request.endpoint.startswith('admin') %}
             <li><a href="{{ url_for('admin.index')}} ">Home</a></li>
-            <li><a href="{{ url_for('admin.pages') }}">Pages</a></li>
-            <li><a href="">Speakers</a></li>
-            <li><a href="">Sessions</a></li>
+            <li><a href="{{ url_for('admin.pages') }}">Páginas</a></li>
+            <li><a href="">Ponentes</a></li>
+            <li><a href="">Sesiones</a></li>
 
             {% else %}
             <li><a href="">Home</a></li>
-            <li><a href="">Speakers</a></li>
-            <li><a href="">Sessions</a></li>
+            <li><a href="">Ponentes</a></li>
+            <li><a href="">Sesiones</a></li>
             <li><a href="">Venue</a></li>
-            <li><a href="">Accomodation</a></li>
+            <li><a href="">Alojamiento</a></li>
             <li><a href="">Sponsors</a></li>
             {% if is_admin %}
             <li><a href="{{ url_for('admin.index') }}">Admin</a></li>

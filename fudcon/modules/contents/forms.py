@@ -6,16 +6,14 @@ from fudcon.modules.contents.models import PAGES, POSTS
 
 
 class AddPage(Form):
-    title = TextField(u'Title',
-                      [Required(u'Add the title of the page')])
-    description = TextAreaField(u'Description',
-                                [Required(u'Add the description of the page')])
-    content_type = SelectField(u'Content Type:', coerce=int, choices=
-                               [(PAGES, u'Page'),
+    title = TextField(u'Título',
+                      [Required(u'Agregue el título de la página')])
+    description = TextAreaField(u'Descripción',
+                                [Required(u'Agregue la descripción de la pagina')])
+    content_type = SelectField(u'Tipo de contenido:', coerce=int, choices=
+                               [(PAGES, u'Página'),
                                (POSTS, u'Post')])
-    is_on_user_menu = BooleanField(u'Is on user menu?',
-                                   [Required(u'Select the menu option or not')])
+    is_on_user_menu = BooleanField(u'Está en el menú de usuario?')
     tag = TextField(u'Tag:',
-                    [Required(u'Add the tag for the main pages')])
-    active = active = BooleanField(u'Active?',
-                                   [Required(u'Select the status of the page')])
+                    [Required(u'Agregue un tag')])
+    active = active = BooleanField(u'Activo?')
