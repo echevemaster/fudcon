@@ -19,6 +19,9 @@ class Config(object):
     FUDCON_NAME = 'Fudcon Managua'
     ADMIN_GROUP = ['provenpackager']
     ITEMS_PER_PAGE = 10
+    UPLOADS_FOLDER = os.path.realpath('.') + '/fudcon/static/uploads'
+    ALLOWED_EXTENSIONS = set(['jpeg', 'jpg', 'gif', 'png',
+                             'txt', 'pdf'])
 
 
 class ProductionConfig(Config):

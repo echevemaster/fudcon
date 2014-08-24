@@ -10,7 +10,17 @@ bp = Blueprint('frontend', __name__,
 def index():
     queryset = Content.query.filter(Content.is_on_user_menu == 1,
                                     Content.tag == 'home',
-                                    Content.active == 1).first()  
+                                    Content.active == 1).first()
     return render_template('frontend/index.html',
                            title="Home",
+                           detail=queryset)
+
+
+@bp.route('/venue', methods=['GET', 'POST'])
+def venue():
+    queryset = Content.query.filter(Content.is_on_user_menu == 1,
+                                    Content.tag == 'venue',
+                                    Content.active == 1).first()
+    return render_template('frontend/index.html',
+                           title='Venue',
                            detail=queryset)
