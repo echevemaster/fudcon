@@ -12,6 +12,12 @@
   font-style: normal;
 }
 
+html, body {
+    color: #000;
+    font-family: Cantarell,"Droid Sans",Verdana,sans-serif;
+    font-size: 1em;
+}
+
 h4 {
   font-family: 'Comfortaa', sans-serif
 }
