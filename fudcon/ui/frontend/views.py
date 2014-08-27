@@ -24,3 +24,23 @@ def venue():
     return render_template('frontend/index.html',
                            title='Venue',
                            detail=queryset)
+
+
+@bp.route('/accomodation', methods=['GET', 'POST'])
+def accomodation():
+    queryset = Content.query.filter(Content.is_on_user_menu == 1,
+                                    Content.tag == 'accomodation',
+                                    Content.active == 1).first()
+    return render_template('frontend/index.html',
+                           title='Alojamiento',
+                           detail=queryset)
+
+
+@bp.route('/sponsors', methods=['GET', 'POST'])
+def sponsors():
+    queryset = Content.query.filter(Content.is_on_user_menu == 1,
+                                    Content.tag == 'sponsors',
+                                    Content.active == 1).first()
+    return render_template('frontend/index.html',
+                           title='Sponsors',
+                           detail=queryset)
