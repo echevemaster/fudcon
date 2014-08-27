@@ -30,9 +30,10 @@
         {% endblock %}
      </section>
     <a class="exit-off-canvas"></a>
-        {% include 'footer.html' %}
+        {#% include 'footer.html' %#}
    </div>
   </div>
+{% include 'footer.html'%}
   <script src="{{ url_for('static', filename='js/vendor/jquery.js') }}"></script>
   <script src="{{ url_for('static', filename='js/vendor/modernizr.js') }}"></script>
   <script src="{{ url_for('static', filename='js/foundation.min.js') }}"></script>
