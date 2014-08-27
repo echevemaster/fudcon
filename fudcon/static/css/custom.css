@@ -80,7 +80,7 @@ span#login-info a {
 }
 
 footer {
-    position: fixed;
+    position: absolute;
     left: 0;
     bottom: 0;
     height: 100px;
