@@ -94,3 +94,10 @@ display:block;
 bottom: 0;
 }
 
+.disclaimer {
+font-family: 'Liberation Sans', sans-serif;
+font-size:9px;
+font-weight:bolder;
+color:#193C6E;
+}
+
