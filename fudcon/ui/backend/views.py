@@ -127,7 +127,7 @@ def add_speaker():
         db.session.commit()
         flash('Ponente creado')
         return redirect(url_for('admin.speakers'))
-    return render_template('backedn/speakers_actions.html',
+    return render_template('backend/speakers_actions.html',
                            form=form,
                            title=u"Añadir speaker",
                            action=action)
@@ -139,7 +139,7 @@ def add_speaker():
 def edit_speaker(speaker_id):
     query_edit_speaker = Speaker.query.filter(Speaker.id ==
                                               speaker_id).first()
-    form = AddSpeaker()
+    form = AddSpeaker(obj=query_edit_speaker)
     action = url_for('admin.edit_speaker', speaker_id=speaker_id)
     if form.validate_on_submit():
         form.populate_obj(query_edit_speaker)
@@ -162,6 +162,7 @@ def delete_speaker(speaker_id):
     db.session.commit()
     flash('Ponente borrado')
     return redirect(request.referrer)
+
 
 
 @bp.route('/uploads', methods=['GET', 'POST'])
