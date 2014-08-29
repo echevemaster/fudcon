@@ -101,3 +101,15 @@ font-weight:bolder;
 color:#193C6E;
 }
 
+.avatar {
+vertical-align:middle;
+}
+
+.circle {
+border-radius: 50%;
+box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+display: block;
+height: 64px;
+margin: 0 auto;
+width: 64px;
+}
