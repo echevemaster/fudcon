@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block css_custom %}
+
+{% endblock %}
+
+{% block js_custom %}
+<script src="{{ url_for('static', filename='js/delete_items.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="large-12 colums">
+            <h4>Listar ponentes</h4>
+            <table class="responsive">
+                <thead>
+                    <tr>
+                        <th>Nombres</th>
+                        <th>fas</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for speaker in speakers.items %}
+                    <tr>
+                        <td>{{ speaker.names }}</td> 
+                        <td>{{ speaker.fas }}</td>
+                        <td>
+                            <a href="{{ url_for('admin.edit_speaker', speaker_id=speaker.id) }}">
+                                <i class="fi-page-edit"></i>
+                            </a>
+                        <td>
+                            <a href="{{ url_for('admin.delete_speaker', speaker_id=speaker.id) }}" class="delete">
+                                <i class="fi-page-delete"></i>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <span>
+            <a class="button" href="{{ url_for('admin.add_speaker') }}">Añadir ponente</a>
+    </div>
+        
+{% endblock content %}
