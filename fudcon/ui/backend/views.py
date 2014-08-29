@@ -9,6 +9,9 @@ from fudcon.app import is_fudcon_admin, app
 from fudcon.database import db
 from fudcon.modules.contents.forms import AddPage
 from fudcon.modules.contents.models import Content
+from fudcon.modules.speakers.models import Speaker
+from fudcon.modules.speakers.forms import AddSpeaker
+
 
 bp = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -95,6 +98,28 @@ def delete_page(page_id):
     db.session.commit()
     flash('Record deleted')
     return redirect(request.referrer)
+
+
+@bp.route('/speakers', methods=['GET', 'POST'])
+@bp.route('/speakers/<int:page>', methods=['GET', 'POST'])
+@is_fudcon_admin
+def speakers(page=1):
+    paginate_params = (page, items_per_page, False)
+    queryset = Speaker.query.paginate(*paginate_params)
+    return render_template('backend/speakers.html',
+                            title='Listar ponentes',
+                            speakers=queryset)
+
+@bp.route('/speakers/add', methods=['GET', 'POST'])
+@is_fudcon_admin
+def add_speaker():
+    """ Add speakers to the application
+    """
+    form = AddSpeaker()
+    action = url_for('admin.add_speaker')
+    if form.validate_on_submit():
+        speaker = Speaker()
+
 
 
 @bp.route('/uploads', methods=['GET', 'POST'])
