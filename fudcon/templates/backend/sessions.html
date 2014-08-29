@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block css_custom %}
+
+{% endblock %}
+
+{% block js_custom %}
+<script src="{{ url_for('static', filename='js/delete_items.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="large-12 columns">
+            <h4>Listar sesiones</h4>
+            <table class="responsive">
+                <thead>
+                    <tr>
+                        <th>Nombre de la sesión</th>
+                        <th>fas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for session in sessions.items %}
+                    <tr>
+                        <td>{{ session.name }}</td>
+                        <td>{{ session.fas }}</td>
+                        <td>
+                            <a href="{{ url_for('admin.edit_session', session_id=session.id)}}">
+                                <i class="fi-page-edit">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ url_for('admin.delete_session', session_id=session.id)}}" class="delete">
+                                <i class="fi-page-delete">
+                            </a>
+                        </td>   
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <span>
+            <a class="button" href="{{ url_for('admin.add_session') }}">Añadir sesión</a>
+        </span>
+    </div>
+        
+{% endblock content %}
