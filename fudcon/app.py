@@ -3,6 +3,7 @@ import urlparse
 from flask import Flask, request, g, redirect, url_for, flash
 from flask.ext.fas_openid import FAS
 from fudcon.database import db
+from fudcon.ui.frontend.utils import avatar_url
 from functools import wraps
 # Instantiate application.
 app = Flask(__name__)
@@ -79,6 +80,13 @@ def is_fudcon_admin(function):
             return function(*args, **kwargs)
     return decorated_function
 
+
+@app.template_filter('avatar')
+def avatar(fas, size=64):
+    output = '<img class="avatar circle" src="%s"/>' % (
+        avatar_url(fas, size)
+    )
+    return output
 
 from fudcon.ui.frontend.views import bp as frontend_bp
 from fudcon.ui.backend.views import bp as backend_bp
