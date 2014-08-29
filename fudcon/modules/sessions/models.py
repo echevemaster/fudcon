@@ -25,6 +25,4 @@ class Session(db.Model):
     topic = db.Column(db.String(255))
     description = db.Column(db.Text())
     session_type = db.Column(db.SmallInteger())
-    speaker_id = db.Column(db.Integer,
-                           db.ForeignKey('speakers.id'))
     active = db.Column(db.Boolean())
