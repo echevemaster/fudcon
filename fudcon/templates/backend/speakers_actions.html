@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block css_custom %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/froala_editor.min.css') }}">
+{% endblock %}
+
+{% block js_custom %}
+<script type="text/javascript" src="{{ url_for('static', filename='js/froala_editor.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/langs/es.js') }}"></script>
+<script>
+    $(function() {
+            $('#bio').editable({inlineMode:false,
+                                language:'es'})
+            });
+</script>
+{% endblock %}
+
+{% block content %}
+
+{% from "_formhelpers.html" import render_field %}
+
+<div class="row">
+    <h4> {{ title }}</h4>
+    <div class="container large-12 columns">
+        <form method="post" action="{{ action }}">
+            <fieldset>
+                <legend></legend>
+                {{ form.hidden_tag() }}
+                {{ render_field(form.names) }}
+                {{ render_field(form.fas) }}
+                {{ render_field(form.bio) }}
+                {{ render_field(form.active) }}
+             </fieldset>
+             <input type="submit" class="button" value="Enviar">
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
