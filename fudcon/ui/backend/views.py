@@ -186,6 +186,7 @@ def add_session():
                           topic=form.topic.data,
                           description=form.description.data,
                           session_type=form.session_type.data,
+                          fas=form.fas.data,
                           active=form.active.data)
         db.session.add(session)
         db.session.commit()
