@@ -25,4 +25,5 @@ class Session(db.Model):
     topic = db.Column(db.String(255))
     description = db.Column(db.Text())
     session_type = db.Column(db.SmallInteger())
+    fas = db.Column(db.String(255))
     active = db.Column(db.Boolean())
