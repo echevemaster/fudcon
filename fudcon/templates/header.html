@@ -24,7 +24,7 @@
             {% if request.endpoint.startswith('admin') %}
             <li><a href="{{ url_for('admin.index')}} ">Home</a></li>
             <li><a href="{{ url_for('admin.pages') }}">Páginas</a></li>
-            <li><a href="">Ponentes</a></li>
+            <li><a href="{{ url_for('admin.speakers') }}">Ponentes</a></li>
             <li><a href="">Sesiones</a></li>
 
             {% else %}
