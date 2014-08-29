@@ -1,8 +1,11 @@
 from __future__ import with_statement
+import sys
+import os
 from alembic import context
 from sqlalchemy import engine_from_config, pool
 from logging.config import fileConfig
 
+sys.path.append(os.getcwd())
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
@@ -16,10 +19,6 @@ fileConfig(config.config_file_name)
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 # target_metadata = None
-from fudcon.modules.contents.models import *
-from fudcon.modules.sessions.models import *
-from fudcon.modules.speakers.models import *
-from fudcon.modules.users.models import *
 # from flask import current_app
 # from fudcon.app import app
 from fudcon.database import db
