@@ -197,7 +197,7 @@ def add_session():
                            action=action)
 
 
-@bp.route('/sessions/edit/<int:session_id',
+@bp.route('/sessions/edit/<int:session_id>',
           methods=['GET', 'POST'])
 @is_fudcon_admin
 def edit_session(session_id):
