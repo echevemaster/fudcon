@@ -20,7 +20,4 @@ class Speaker(db.Model):
     names = db.Column(db.String(255))
     fas = db.Column(db.String(255))
     bio = db.Column(db.Text())
-    sessions = db.relationship('Session', backref='speakers',
-                               lazy='dynamic')
-    photo = db.Column(db.String(255))
     active = db.Column(db.Boolean())
