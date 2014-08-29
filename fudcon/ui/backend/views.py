@@ -107,8 +107,9 @@ def speakers(page=1):
     paginate_params = (page, items_per_page, False)
     queryset = Speaker.query.paginate(*paginate_params)
     return render_template('backend/speakers.html',
-                            title='Listar ponentes',
-                            speakers=queryset)
+                           title='Listar ponentes',
+                           speakers=queryset)
+
 
 @bp.route('/speakers/add', methods=['GET', 'POST'])
 @is_fudcon_admin
@@ -118,8 +119,49 @@ def add_speaker():
     form = AddSpeaker()
     action = url_for('admin.add_speaker')
     if form.validate_on_submit():
-        speaker = Speaker()
+        speaker = Speaker(names=form.names.data,
+                          fas=form.fas.data,
+                          bio=form.bio.data,
+                          active=form.active.data)
+        db.session.add(speaker)
+        db.session.commit()
+        flash('Ponente creado')
+        return redirect(url_for('admin.speakers'))
+    return render_template('backedn/speakers_actions.html',
+                           form=form,
+                           title=u"Añadir speaker",
+                           action=action)
 
+
+@bp.route('/speakers/edit/<int:speaker_id>',
+          methods=['GET', 'POST'])
+@is_fudcon_admin
+def edit_speaker(speaker_id):
+    query_edit_speaker = Speaker.query.filter(Speaker.id ==
+                                              speaker_id).first()
+    form = AddSpeaker()
+    action = url_for('admin.edit_speaker', speaker_id=speaker_id)
+    if form.validate_on_submit():
+        form.populate_obj(query_edit_speaker)
+        db.session.commit()
+        flash('Ponente actualizado')
+        return redirect(url_for('admin.speakers'))
+    return render_template('backend/speakers_actions.html',
+                           title=u'Editar ponente',
+                           form=form,
+                           action=action)
+
+
+@bp.route('/speakers/delete/<int:speaker_id>',
+          methods=['GET', 'POST'])
+@is_fudcon_admin
+def delete_speaker(speaker_id):
+    query_delete_speaker = Speaker.query.filter(
+        Speaker.id == speaker_id).first()
+    db.session.delete(query_delete_speaker)
+    db.session.commit()
+    flash('Ponente borrado')
+    return redirect(request.referrer)
 
 
 @bp.route('/uploads', methods=['GET', 'POST'])
