@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block css_custom %}
+{% endblock css_custom %}
+
+{% block content %}
+    <div class="row">
+        <div class="large-12 columns">
+            <h4>Ponentes</h4>
+            <div class="content">
+                {% for speaker in speakers.items %}
+                    <div class="large-2 columns">
+                        {{ speaker.fas | avatar | safe }} 
+                    </div>
+                    <div class="large-10 columns">
+                        <h5>{{ speaker.names }}<h5>
+                        {{ speaker.bio | safe }}
+                    </div>
+                    
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+        
+{% endblock content %}
