@@ -11,7 +11,8 @@ from fudcon.modules.contents.forms import AddPage
 from fudcon.modules.contents.models import Content
 from fudcon.modules.speakers.models import Speaker
 from fudcon.modules.speakers.forms import AddSpeaker
-
+from fudcon.modules.sessions.models import Session
+from fudcon.modules.sessions.forms import AddSession
 
 bp = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -163,6 +164,68 @@ def delete_speaker(speaker_id):
     flash('Ponente borrado')
     return redirect(request.referrer)
 
+
+@bp.route('/sessions', methods=['GET', 'POST'])
+@bp.route('/sessions/<int:page>', methods=['GET', 'POST'])
+@is_fudcon_admin
+def sessions(page=1):
+    paginate_params = (page, items_per_page, False)
+    queryset = Session.query.paginate(*paginate_params)
+    return render_template('backend/sessions.html',
+                           title='Listar sesiones',
+                           sessions=queryset)
+
+
+@bp.route('/sessions/add', methods=['GET', 'POST'])
+@is_fudcon_admin
+def add_session():
+    form = AddSession()
+    action = url_for('admin.add_session')
+    if form.validate_on_submit():
+        session = Session(name=form.name.data,
+                          topic=form.topic.data,
+                          description=form.description.data,
+                          session_type=form.session_type.data,
+                          active=form.active.data)
+        db.session.add(session)
+        db.session.commit()
+        flash(u'Sesión creada')
+        return redirect(url_for('admin.sessions'))
+    return render_template('backend/sessions_actions.html',
+                           form=form,
+                           title=u"Añadir sesión",
+                           action=action)
+
+
+@bp.route('/sessions/edit/<int:session_id',
+          methods=['GET', 'POST'])
+@is_fudcon_admin
+def edit_session(session_id):
+    query_edit_session = Session.query.filter(Session.id ==
+                                              session_id).first()
+    form = AddSession(obj=query_edit_session)
+    action = url_for('admin.edit_session', session_id=session_id)
+    if form.validate_on_submit():
+        form.populate_obj(query_edit_session)
+        db.session.commit()
+        flash('Sesion actualizada')
+        return redirect(url_for('admin.sessions'))
+    return render_template('backend/sessions_actions.html',
+                           title=u'Editar sesión',
+                           form=form,
+                           action=action)
+
+
+@bp.route('sessions/delete/<int:session_id>',
+          methods=['GET', 'POST'])
+@is_fudcon_admin
+def delete_session(session_id):
+    query_delete_session = Session.query.filter(
+        Session.id == session_id).first()
+    db.session.delete(query_delete_session)
+    db.session.commit()
+    flash(u'Sesión Borrada')
+    return redirect(request.referrer)
 
 
 @bp.route('/uploads', methods=['GET', 'POST'])
