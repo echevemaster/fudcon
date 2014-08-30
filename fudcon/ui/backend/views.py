@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import json
+import logging
 from flask import (Blueprint,
                    redirect, render_template,
                    url_for, flash, request)
@@ -14,6 +15,9 @@ from fudcon.modules.speakers.forms import AddSpeaker
 from fudcon.modules.sessions.models import (Session, TALKS,
                                             BARCAMPS, WORKSHOPS)
 from fudcon.modules.sessions.forms import AddSession
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 bp = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -244,7 +248,12 @@ def upload():
     file = request.files['file']
     if file:
         if not os.path.exists(upload_folder):
-            os.makedirs(upload_folder)
+            try:
+                os.makedirs(upload_folder)
+            except OSError as e:
+                if e.eerno != e.EEXIST:
+                    logger.debug('Error %s:%s',e.eerno, e.error)
+
         filename = secure_filename(file.filename)
         file.save(os.path.join(upload_folder, filename))
         url = url_for('static', filename='uploads/' + filename)
