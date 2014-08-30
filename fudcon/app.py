@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import urlparse
+import logging
+from logging.handlers import RotatingFileHandler
 from flask import Flask, request, g, redirect, url_for, flash
 from flask.ext.fas_openid import FAS
 from fudcon.database import db
@@ -87,6 +89,16 @@ def avatar(fas, size=64):
         avatar_url(fas, size)
     )
     return output
+
+
+def create_logger():
+    if not app.debug:
+        formatter = logging.Formatter(
+            "[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s")
+        handler = RotatingFileHandler('fudconlatam.log', maxBytes=10000000, backupCount=5)
+        handler.setLevel(logging.DEBUG)
+        handler.setFormatter(formatter)
+        app.logger.addHandler(handler)
 
 from fudcon.ui.frontend.views import bp as frontend_bp
 from fudcon.ui.backend.views import bp as backend_bp
