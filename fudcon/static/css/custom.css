@@ -1,4 +1,4 @@
-@font-face {
+/*@font-face {
   font-family: 'Cantarell';
   src: url('../fonts/Cantarell-Regular-webfont.eot');
   font-weight: normal;
@@ -11,6 +11,9 @@
   font-weight: normal;
   font-style: normal;
 }
+*/
+@import url(http://fonts.googleapis.com/css?family=Cantarell);
+@import url(http://fonts.googleapis.com/css?family=Comfortaa);
 
 html, body {
     color: #000;
@@ -41,9 +44,10 @@ h4 {
 }
 
 .menu a {
-    font-family: 'Liberation Sans', sans-serif;
+    font-family: 'Comfortaa', sans-serif;
     color:#fff;
     font-weight: bold
+    font-size:12px;
 }
 
 .menu ul {
