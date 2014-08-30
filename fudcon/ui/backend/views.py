@@ -15,8 +15,8 @@ from fudcon.modules.speakers.forms import AddSpeaker
 from fudcon.modules.sessions.models import (Session, TALKS,
                                             BARCAMPS, WORKSHOPS)
 from fudcon.modules.sessions.forms import AddSession
-
-logging.basicConfig(level=logging.INFO)
+from fudcon.app import app
+logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 bp = Blueprint('admin', __name__, url_prefix='/admin')
@@ -252,7 +252,7 @@ def upload():
                 os.makedirs(upload_folder)
             except OSError as e:
                 if e.eerno != e.EEXIST:
-                    logger.info('Error %s:%s',e.eerno, e.error)
+                    app.logger.debug('Error %s:%s',e.eerno, e.error)
 
         filename = secure_filename(file.filename)
         file.save(os.path.join(upload_folder, filename))
