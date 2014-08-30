@@ -25,7 +25,7 @@
             <li><a href="{{ url_for('admin.index')}} ">Home</a></li>
             <li><a href="{{ url_for('admin.pages') }}">Páginas</a></li>
             <li><a href="{{ url_for('admin.speakers') }}">Ponentes</a></li>
-            <li><a href="">Sesiones</a></li>
+            <li><a href="{{ url_for('admin.sessions') }}">Sesiones</a></li>
 
             {% else %}
             <li><a href="{{ url_for('frontend.index') }}">Home</a></li>
