@@ -25,11 +25,11 @@
                     <legend></legend>
                     {{ form.hidden_tag() }}
                     {{ render_field(form.name) }}
-                    {{ render_field(topic) }}
-                    {{ render_field(description) }}
-                    {{ render_field(session_type) }}
-                    {{ render_field(fas) }}
-                    {{ render_field(active) }}
+                    {{ render_field(form.topic) }}
+                    {{ render_field(form.description) }}
+                    {{ render_field(form.session_type) }}
+                    {{ render_field(form.fas) }}
+                    {{ render_field(form.active) }}
                 </fieldset>
                 <input type="submit" class="button" value="Enviar"/>
             </form>
