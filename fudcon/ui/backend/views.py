@@ -11,7 +11,8 @@ from fudcon.modules.contents.forms import AddPage
 from fudcon.modules.contents.models import Content
 from fudcon.modules.speakers.models import Speaker
 from fudcon.modules.speakers.forms import AddSpeaker
-from fudcon.modules.sessions.models import Session
+from fudcon.modules.sessions.models import (Session, TALKS,
+                                            BARCAMPS, WORKSHOPS)
 from fudcon.modules.sessions.forms import AddSession
 
 bp = Blueprint('admin', __name__, url_prefix='/admin')
@@ -181,6 +182,13 @@ def sessions(page=1):
 def add_session():
     form = AddSession()
     action = url_for('admin.add_session')
+    choices_session = [(TALKS, 'Charlas'),
+                      (BARCAMPS, 'Mesas de trabajo'),
+                      (WORKSHOPS, 'Talleres')]
+    form.session_type.choices = choices_session
+    query_fas = Speaker.query.filter(Speaker.active == 1).all()
+    choices_fas = [(c.id, c.names) for c in query_fas]
+    form.fas.choices = choices_fas
     if form.validate_on_submit():
         session = Session(name=form.name.data,
                           topic=form.topic.data,
