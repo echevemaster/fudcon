@@ -191,7 +191,7 @@ def add_session():
                       (WORKSHOPS, 'Talleres')]
     form.session_type.choices = choices_session
     query_fas = Speaker.query.filter(Speaker.active == 1).all()
-    choices_fas = [(c.id, c.names) for c in query_fas]
+    choices_fas = [(c.fas, c.names) for c in query_fas]
     form.fas.choices = choices_fas
     if form.validate_on_submit():
         session = Session(name=form.name.data,
@@ -218,6 +218,13 @@ def edit_session(session_id):
                                               session_id).first()
     form = AddSession(obj=query_edit_session)
     action = url_for('admin.edit_session', session_id=session_id)
+    choices_session = [(TALKS, 'Charlas'),
+                      (BARCAMPS, 'Mesas de trabajo'),
+                      (WORKSHOPS, 'Talleres')]
+    form.session_type.choices = choices_session
+    query_fas = Speaker.query.filter(Speaker.active == 1).all()
+    choices_fas = [(c.fas, c.names) for c in query_fas]
+    form.fas.choices = choices_fas
     if form.validate_on_submit():
         form.populate_obj(query_edit_session)
         db.session.commit()
