@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block css_custom %}
+
+{% endblock %}
+
+{% block js_custom %}
+<script src="{{ url_for('static', filename='js/delete_items.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="large-12 columns">
+            <h4>Sesiones</h4>
+            <h5>Charlas</h5>
+            <div class="content">
+                {% for talk in talks %}
+                    <div class="large-2 columns">
+                        {{ talk.fas | avatar | safe }}
+                    </div>
+
+                    <div class="large-10 columns">
+                        <h5 class="sessions">{{ talk.name }}<h5>
+                                <span class="topic">Tópico: {{ talk.topic }}</span>
+                    </div>
+                    
+                {% endfor %}
+
+            </div>
+            <h5>Talleres</h5>
+            <div class="content">
+                {% for workshop in workshops %}
+                    <div class="large-2 columns">
+                        {{ workshop.fas | avatar | safe }}
+                    </div>
+
+                    <div class="large-10 columns">
+                        <h5 class="sessions">{{ workshop.name }}<h5>
+                                <span class="topic">Tópico: {{ workshop.topic }}</span>
+                    </div>
+                    
+                {% endfor %}
+
+            </div>
+
+            <h5>Mesas de trabajo</h5>
+            <div class="content">
+                {% for barcamp in barcamps %}
+                    <div class="large-2 columns">
+                        {{ barcamp.fas | avatar | safe }}
+                    </div>
+
+                    <div class="large-10 columns">
+                        <h5 class="sessions">{{ barcamp.name }}<h5>
+                                <span class="topic">Tópico: {{ barcamp.topic }}</span>
+                    </div>
+                    
+                {% endfor %}
+
+            </div>
+
+
+
+        </div>
+    </div>
+        
+{% endblock content %}
