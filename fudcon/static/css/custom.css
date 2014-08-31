@@ -117,3 +117,14 @@ height: 64px;
 margin: 0 auto;
 width: 64px;
 }
+
+.sessions {
+font-family:"Cantarell", sans-serif;
+font-size:15px;
+font-weight:bold;
+}
+
+.topic {
+    font-family:"Comfortaa", Arial,  Verdana;
+    font-size:14px;
+}
