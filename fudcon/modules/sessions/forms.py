@@ -10,11 +10,9 @@ class AddSession(Form):
                      [Required(u'Ingrese el nombre de la sesión')])
     topic = TextField(u'Tópico de la sesión:',
                       [Required(u'Ingrese el nombre del tópico')])
-    description = TextAreaField(u'Descripción de la sesión',
-                                [Required(u'Ingrese la descripción')])
+    description = TextAreaField(u'Descripción de la sesión:')
     session_type = SelectField(u'Tipo de sesión', coerce=int,
                                choices=[])
     fas = SelectField(u'Ponente',
-                      coerce=int,
                       choices=[])
     active = BooleanField(u'Activo?:')
