@@ -2,12 +2,14 @@
 from flask import Blueprint, render_template, g, url_for
 from fudcon.modules.contents.models import Content
 from fudcon.modules.speakers.models import Speaker
+from fudcon.modules.sessions.models import Session
 from fudcon.app import app
 
 bp = Blueprint('frontend', __name__,
                template_folder='templates')
 
 items_per_page = app.config['ITEMS_PER_PAGE']
+
 
 @bp.route('/', methods=['GET', 'POST'])
 def index():
@@ -57,3 +59,27 @@ def speakers(page=1):
     return render_template('frontend/speakers.html',
                            title=u'Ponentes',
                            speakers=queryset)
+
+
+@bp.route('/sessions', methods=['GET', 'POST'])
+@bp.route('/sessions/<int:page>', methods=['GET', 'POST'])
+def sessions(page=1):
+    """Ui for session.
+
+    :page: parameter for pagination
+    :returns: a template for session
+
+    """
+    # paginate_params = (page, items_per_page, False)
+    # queryset = Session.query.paginate(*paginate_params)
+    talks = Session.query.filter(Session.active == 1,
+                                 Session.session_type == 1).all()
+    barcamps = Session.query.filter(Session.active == 1,
+                                    Session.session_type == 2).all()
+    workshops = Session.query.filter(Session.active == 1,
+                                     Session.session_type == 3).all()
+    return render_template('frontend/sessions.html', 
+                           title=u'Sesiones',
+                           talks=talks,
+                           barcamps=barcamps,
+                           workshops=workshops)
