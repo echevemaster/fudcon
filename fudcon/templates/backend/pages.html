@@ -10,16 +10,20 @@
 {% endblock %}
 
 {% block content %}
+    {% from "_pagination.html" import render_pagination %}
 
 <div class="row">
     <div class="large-12 columns">
-        <h4>List pages</h4>
+        <h4>Listar páginas</h4>
+        {% include "_messages.html" %}
+
+        {{ render_pagination(pages, 'admin.pages') }}    
     <table class="responsive">
         <thead>
             <tr>
-                <th>Title</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>Título</th>
+                <th>Editar</th>
+                <th>Borrar</th>
             </tr>
         </thead>
         <tbody>
