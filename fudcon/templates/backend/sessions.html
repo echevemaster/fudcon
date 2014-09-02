@@ -16,6 +16,8 @@
                     <tr>
                         <th>Nombre de la sesión</th>
                         <th>fas</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,12 +27,12 @@
                         <td>{{ session.fas }}</td>
                         <td>
                             <a href="{{ url_for('admin.edit_session', session_id=session.id)}}">
-                                <i class="fi-page-edit">
+                                <i class="fi-page-edit"></i>
                             </a>
                         </td>
                         <td>
                             <a href="{{ url_for('admin.delete_session', session_id=session.id)}}" class="delete">
-                                <i class="fi-page-delete">
+                                <i class="fi-page-delete"></i>
                             </a>
                         </td>   
                     </tr>
