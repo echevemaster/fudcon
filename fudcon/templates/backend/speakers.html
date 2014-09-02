@@ -8,9 +8,13 @@
 {% endblock %}
 
 {% block content %}
+    {% from "_pagination.html" import render_pagination %}
     <div class="row">
         <div class="large-12 colums">
             <h4>Listar ponentes</h4>
+            {% include "_messages.html" %}
+
+            {{ render_pagination(speakers, 'admin.speakers') }}
             <table class="responsive">
                 <thead>
                     <tr>
