@@ -125,3 +125,15 @@ footer {
   font-size: 15px;
   font-weight: bold;
 }
+
+/* line 1, ../sass/pages/_speakers.scss */
+.speakers {
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+/* line 4, ../sass/pages/_speakers.scss */
+.speakers .speakers--title {
+  font-family: "Cantarell", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+}
