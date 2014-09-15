@@ -37,16 +37,14 @@ h4 {
 .menu a {
   font-family: 'Comfortaa', sans-serif;
   color: #fff;
-  font-weight: bold;
-  font-size: 12px;
 }
 
-/* line 38, ../sass/default/_default.scss */
+/* line 36, ../sass/default/_default.scss */
 .menu ul {
   padding: 5px 5px 8px;
 }
 
-/* line 42, ../sass/default/_default.scss */
+/* line 40, ../sass/default/_default.scss */
 .menu li {
   display: inline-block;
   float: left;
@@ -54,7 +52,7 @@ h4 {
   padding: 5px 5px 8px;
 }
 
-/* line 48, ../sass/default/_default.scss */
+/* line 46, ../sass/default/_default.scss */
 span#login-info {
   background-color: #ccc;
   border-bottom-left-radius: 3px;
@@ -67,7 +65,7 @@ span#login-info {
   top: 0;
 }
 
-/* line 59, ../sass/default/_default.scss */
+/* line 57, ../sass/default/_default.scss */
 span#login-info a {
   font-family: 'Liberation Sans', sans-serif;
   font-size: 12px;
@@ -75,19 +73,19 @@ span#login-info a {
   color: #193C6E;
 }
 
-/* line 66, ../sass/default/_default.scss */
+/* line 64, ../sass/default/_default.scss */
 .text {
   font-family: 'Liberation Sans', sans-serif;
   font-size: 12px;
 }
 
-/* line 71, ../sass/default/_default.scss */
+/* line 69, ../sass/default/_default.scss */
 footer {
   display: block;
   bottom: 0;
 }
 
-/* line 76, ../sass/default/_default.scss */
+/* line 74, ../sass/default/_default.scss */
 .disclaimer {
   font-family: 'Liberation Sans', sans-serif;
   font-size: 9px;
@@ -95,30 +93,35 @@ footer {
   color: #193C6E;
 }
 
-/* line 83, ../sass/default/_default.scss */
+/* line 81, ../sass/default/_default.scss */
 .avatar {
   vertical-align: middle;
 }
 
-/* line 87, ../sass/default/_default.scss */
+/* line 85, ../sass/default/_default.scss */
 .circle {
   border-radius: 50%;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
   display: block;
   height: 64px;
-  margin: 0 auto;
+  margin: 6px auto;
   width: 64px;
 }
 
-/* line 96, ../sass/default/_default.scss */
-.sessions {
-  font-family: "Cantarell", sans-serif;
-  font-size: 15px;
-  font-weight: bold;
-}
-
-/* line 102, ../sass/default/_default.scss */
+/* line 94, ../sass/default/_default.scss */
 .topic {
   font-family: "Comfortaa", Arial,  Verdana;
   font-size: 14px;
+}
+
+/* line 1, ../sass/pages/_sessions.scss */
+.sessions {
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+/* line 4, ../sass/pages/_sessions.scss */
+.sessions .sessions--title {
+  font-family: "Cantarell", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
 }
