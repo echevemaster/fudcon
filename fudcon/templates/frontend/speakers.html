@@ -10,14 +10,15 @@
             <hr/>
             <div class="content">
                 {% for speaker in speakers.items %}
-                    <div class="large-2 columns">
-                        {{ speaker.fas | avatar | safe }} 
+                    <div class="speakers">
+                        <div class="speakers--avatar large-2 columns">
+                            {{ speaker.fas | avatar | safe }} 
+                        </div>
+                        <div class="speakers--description large-10 columns">
+                            <h5 class="speakers--title">{{ speaker.names }}<h5>
+                            {{ speaker.bio | safe }}
+                        </div>
                     </div>
-                    <div class="large-10 columns">
-                        <h5>{{ speaker.names }}<h5>
-                        {{ speaker.bio | safe }}
-                    </div>
-                    
                 {% endfor %}
             </div>
         </div>

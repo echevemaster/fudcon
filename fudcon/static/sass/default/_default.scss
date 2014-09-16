@@ -1,0 +1,97 @@
+@import url(http://fonts.googleapis.com/css?family=Cantarell);
+@import url(http://fonts.googleapis.com/css?family=Comfortaa);
+
+html, body {
+    color: #000;
+    font-family: Cantarell,"Droid Sans",Verdana,sans-serif;
+    font-size: 1em;
+}
+
+h4 {
+  font-family: 'Comfortaa', sans-serif
+}
+
+.brand-logo {
+  float:left;
+}
+
+.logo {
+  padding-top:2px;
+  display: block;
+}
+
+.header {
+  background-color: #e6e6e6;
+}
+
+.nav {
+  background-color: #193C6E;
+}
+
+.menu a {
+  font-family: 'Comfortaa', sans-serif;
+  color:#fff;
+}
+
+.menu ul {
+    padding: 5px 5px 8px;
+}
+
+.menu li {
+  display: inline-block;
+  float:left;
+  margin:3px;
+  padding: 5px 5px 8px;
+}
+span#login-info {
+  background-color: #ccc;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  box-shadow: 0 10px 10px rgba(255, 255, 255, 0.5) inset, 0 1px 3px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  padding: 3px 15px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+span#login-info a {
+  font-family: 'Liberation Sans', sans-serif;
+  font-size:12px;
+  font-weight:bold;
+  color:#193C6E;
+}
+
+.text {
+   font-family: 'Liberation Sans', sans-serif;
+   font-size:12px;
+}
+
+footer {
+display:block;
+bottom: 0;
+}
+
+.disclaimer {
+  font-family: 'Liberation Sans', sans-serif;
+  font-size:9px;
+  font-weight:bolder;
+  color:#193C6E;
+}
+
+.avatar {
+  vertical-align:middle;
+}
+
+.circle {
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+  display: block;
+  height: 64px;
+  margin: 6px auto;
+  width: 64px;
+}
+
+.topic {
+    font-family:"Comfortaa", Arial,  Verdana;
+    font-size:14px;
+}

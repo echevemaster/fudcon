@@ -1,0 +1,8 @@
+// This file here is to include all the sass files that needs to be compiled.
+
+// Import all the default css rules before start use sass
+@import "default/default";
+
+// Pages
+@import "pages/sessions";
+@import "pages/speakers";
