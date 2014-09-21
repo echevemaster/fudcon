@@ -1,105 +1,139 @@
 @import url(http://fonts.googleapis.com/css?family=Cantarell);
 @import url(http://fonts.googleapis.com/css?family=Comfortaa);
-
+/* line 4, ../sass/default/_default.scss */
 html, body {
-    color: #000;
-    font-family: Cantarell,"Droid Sans",Verdana,sans-serif;
-    font-size: 1em;
+  color: #000;
+  font-family: Cantarell,"Droid Sans",Verdana,sans-serif;
+  font-size: 1em;
 }
 
+/* line 10, ../sass/default/_default.scss */
 h4 {
-  font-family: 'Comfortaa', sans-serif
+  font-family: "Comfortaa", sans-serif;
 }
 
+/* line 14, ../sass/default/_default.scss */
 .brand-logo {
-    float:left;
+  float: left;
 }
 
+/* line 18, ../sass/default/_default.scss */
 .logo {
-    padding-top:2px;
-    display: block;
+  padding-top: 2px;
+  display: block;
 }
 
+/* line 23, ../sass/default/_default.scss */
 .header {
-    background-color: #e6e6e6;
+  background-color: #e6e6e6;
 }
 
+/* line 27, ../sass/default/_default.scss */
 .nav {
-    background-color: #193C6E;
+  background-color: #193C6E;
 }
 
+/* line 31, ../sass/default/_default.scss */
 .menu a {
-    font-family: 'Comfortaa', sans-serif;
-    color:#fff;
-    font-weight: bold
-    font-size:12px;
+  font-family: 'Comfortaa', sans-serif;
+  color: #fff;
 }
 
+/* line 36, ../sass/default/_default.scss */
 .menu ul {
-    padding: 5px 5px 8px;
+  padding: 5px 5px 8px;
 }
 
+/* line 40, ../sass/default/_default.scss */
 .menu li {
-    display: inline-block;
-    float:left;
-    margin:3px;
-    padding: 5px 5px 8px;
+  display: inline-block;
+  float: left;
+  margin: 3px;
+  padding: 5px 5px 8px;
 }
+
+/* line 46, ../sass/default/_default.scss */
 span#login-info {
-background-color: #ccc;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    box-shadow: 0 10px 10px rgba(255, 255, 255, 0.5) inset, 0 1px 3px rgba(0, 0, 0, 0.5);
-    font-weight: bold;
-    padding: 3px 15px;
-    position: absolute;
-    right: 0;
-    top: 0;
+  background-color: #ccc;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  box-shadow: 0 10px 10px rgba(255, 255, 255, 0.5) inset, 0 1px 3px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  padding: 3px 15px;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
+
+/* line 57, ../sass/default/_default.scss */
 span#login-info a {
   font-family: 'Liberation Sans', sans-serif;
-  font-size:12px;
-  font-weight:bold;
-  color:#193C6E;
+  font-size: 12px;
+  font-weight: bold;
+  color: #193C6E;
 }
 
+/* line 64, ../sass/default/_default.scss */
 .text {
-   font-family: 'Liberation Sans', sans-serif;
-   font-size:12px;
+  font-family: 'Liberation Sans', sans-serif;
+  font-size: 12px;
 }
 
+/* line 69, ../sass/default/_default.scss */
 footer {
-display:block;
-bottom: 0;
+  display: block;
+  bottom: 0;
 }
 
+/* line 74, ../sass/default/_default.scss */
 .disclaimer {
-font-family: 'Liberation Sans', sans-serif;
-font-size:9px;
-font-weight:bolder;
-color:#193C6E;
+  font-family: 'Liberation Sans', sans-serif;
+  font-size: 9px;
+  font-weight: bolder;
+  color: #193C6E;
 }
 
+/* line 81, ../sass/default/_default.scss */
 .avatar {
-vertical-align:middle;
+  vertical-align: middle;
 }
 
+/* line 85, ../sass/default/_default.scss */
 .circle {
-border-radius: 50%;
-box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
-display: block;
-height: 64px;
-margin: 0 auto;
-width: 64px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+  display: block;
+  height: 64px;
+  margin: 6px auto;
+  width: 64px;
 }
 
-.sessions {
-font-family:"Cantarell", sans-serif;
-font-size:15px;
-font-weight:bold;
-}
-
+/* line 94, ../sass/default/_default.scss */
 .topic {
-    font-family:"Comfortaa", Arial,  Verdana;
-    font-size:14px;
+  font-family: "Comfortaa", Arial,  Verdana;
+  font-size: 14px;
+}
+
+/* line 1, ../sass/pages/_sessions.scss */
+.sessions {
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+/* line 4, ../sass/pages/_sessions.scss */
+.sessions .sessions--title {
+  font-family: "Cantarell", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* line 1, ../sass/pages/_speakers.scss */
+.speakers {
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+/* line 4, ../sass/pages/_speakers.scss */
+.speakers .speakers--title {
+  font-family: "Cantarell", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
 }

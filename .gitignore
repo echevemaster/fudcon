@@ -50,3 +50,6 @@ nosetests.xml
 *~
 *.*~
 *.swp
+
+# Sass cache
+fudcon/static/sass/.sass-cache/*
