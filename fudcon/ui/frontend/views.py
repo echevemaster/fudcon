@@ -55,7 +55,7 @@ def sponsors():
 @bp.route('/speakers/<int:page>', methods=['GET', 'POST'])
 def speakers(page=1):
     paginate_params = (page, items_per_page, False)
-    queryset = Speaker.query.paginate(*paginate_params)
+    queryset = Speaker.query.filter(Speaker.active == 1).paginate(*paginate_params)
     return render_template('frontend/speakers.html',
                            title=u'Ponentes',
                            speakers=queryset)
