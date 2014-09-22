@@ -6,7 +6,6 @@
     <div class="row">
         <div class="large-12 columns">
             <h4>Ponentes</h4>
-            <p>Esta lista representa quienes han solicitado ser expositores para FUDCon Managua 2014. Aun no es de carácter definitiva.</p>
             <hr/>
             <div class="content">
                 {% for speaker in speakers.items %}
@@ -22,6 +21,7 @@
                                         <span class="">Confirmado</span>
                                     {% else %}
                                         <span class="">No confirmado</span>
+                                        {% endif %}
                         </div>
                     </div>
                 {% endfor %}
