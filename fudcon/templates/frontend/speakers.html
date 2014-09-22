@@ -16,7 +16,12 @@
                         </div>
                         <div class="speakers--description large-10 columns">
                             <h5 class="speakers--title">{{ speaker.names }}<h5>
-                            {{ speaker.bio | safe }}
+                                    {{ speaker.bio | safe }}
+                                    <br/>
+                                    {% if speaker.active == 1 %}
+                                        <span class="">Confirmado</span>
+                                    {% else %}
+                                        <span class="">No confirmado</span>
                         </div>
                     </div>
                 {% endfor %}
