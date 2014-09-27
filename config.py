@@ -17,7 +17,7 @@ class Config(object):
     FAS_OPENID_ENDPOINT = 'http://id.fedoraproject.org/'
     FAS_CHECK_CERT = True
     FUDCON_NAME = 'Fudcon Managua'
-    ADMIN_GROUP = ['provenpackager']
+    ADMIN_GROUP = ['packager']
     ITEMS_PER_PAGE = 10
     UPLOADS_FOLDER = os.path.realpath('.') + '/fudcon/static/uploads'
     ALLOWED_EXTENSIONS = set(['jpeg', 'jpg', 'gif', 'png',

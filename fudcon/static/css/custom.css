@@ -117,8 +117,51 @@ footer {
   font-weight: bold;
 }
 
+<<<<<<< Updated upstream
 /* line 102, ../sass/default/_default.scss */
 .topic {
   font-family: "Comfortaa", Arial,  Verdana;
   font-size: 14px;
+=======
+/* line 11, ../sass/pages/_sessions.scss */
+.workshops {
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+/* line 14, ../sass/pages/_sessions.scss */
+.workshops .workshops--title {
+  font-family: "Cantarell", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* line 21, ../sass/pages/_sessions.scss */
+.worktables {
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+/* line 24, ../sass/pages/_sessions.scss */
+.worktables .worktables--title {
+  font-family: "Cantarell", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* line 1, ../sass/pages/_speakers.scss */
+.speakers {
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+/* line 4, ../sass/pages/_speakers.scss */
+.speakers .speakers--title {
+  font-family: "Cantarell", sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+>>>>>>> Stashed changes
+}
+
+/* line 11, ../sass/pages/_speakers.scss */
+.confirm {
+  color: #008cba;
+  font-style: italic;
 }
