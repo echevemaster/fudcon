@@ -14,13 +14,15 @@
             <h5>Charlas</h5>
             <div class="content">
                 {% for talk in talks %}
-                    <div class="large-2 columns">
-                        {{ talk.fas | avatar | safe }}
-                    </div>
+                    <div class="sessions">
+                        <div class="sessions--avatar large-2 columns">
+                            {{ talk.fas | avatar | safe }}
+                        </div>
 
-                    <div class="large-10 columns">
-                        <h5 class="sessions">{{ talk.name }}<h5>
-                                <span class="topic">Tópico: {{ talk.topic }}</span>
+                        <div class="sessions--description large-10 columns">
+                            <h5 class="sessions--title">{{ talk.name }}<h5>
+                                    <span class="topic">Tópico: {{ talk.topic }}</span>
+                        </div>
                     </div>
                     
                 {% endfor %}

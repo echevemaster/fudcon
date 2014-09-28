@@ -12,27 +12,25 @@ h4 {
 }
 
 .brand-logo {
-    float:left;
+  float:left;
 }
 
 .logo {
-    padding-top:2px;
-    display: block;
+  padding-top:2px;
+  display: block;
 }
 
 .header {
-    background-color: #e6e6e6;
+  background-color: #e6e6e6;
 }
 
 .nav {
-    background-color: #193C6E;
+  background-color: #193C6E;
 }
 
 .menu a {
-    font-family: 'Comfortaa', sans-serif;
-    color:#fff;
-    font-weight: bold;
-    font-size:12px;
+  font-family: 'Comfortaa', sans-serif;
+  color:#fff;
 }
 
 .menu ul {
@@ -40,21 +38,21 @@ h4 {
 }
 
 .menu li {
-    display: inline-block;
-    float:left;
-    margin:3px;
-    padding: 5px 5px 8px;
+  display: inline-block;
+  float:left;
+  margin:3px;
+  padding: 5px 5px 8px;
 }
 span#login-info {
-background-color: #ccc;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    box-shadow: 0 10px 10px rgba(255, 255, 255, 0.5) inset, 0 1px 3px rgba(0, 0, 0, 0.5);
-    font-weight: bold;
-    padding: 3px 15px;
-    position: absolute;
-    right: 0;
-    top: 0;
+  background-color: #ccc;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  box-shadow: 0 10px 10px rgba(255, 255, 255, 0.5) inset, 0 1px 3px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  padding: 3px 15px;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 span#login-info a {
   font-family: 'Liberation Sans', sans-serif;
@@ -74,29 +72,23 @@ bottom: 0;
 }
 
 .disclaimer {
-font-family: 'Liberation Sans', sans-serif;
-font-size:9px;
-font-weight:bolder;
-color:#193C6E;
+  font-family: 'Liberation Sans', sans-serif;
+  font-size:9px;
+  font-weight:bolder;
+  color:#193C6E;
 }
 
 .avatar {
-vertical-align:middle;
+  vertical-align:middle;
 }
 
 .circle {
-border-radius: 50%;
-box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
-display: block;
-height: 64px;
-margin: 0 auto;
-width: 64px;
-}
-
-.sessions {
-font-family:"Cantarell", sans-serif;
-font-size:15px;
-font-weight:bold;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+  display: block;
+  height: 64px;
+  margin: 6px auto;
+  width: 64px;
 }
 
 .topic {
