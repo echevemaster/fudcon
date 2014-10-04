@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block css_custom %}
+
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="large-12 columns">
+        <div class="content">
+            <a href="{{ url_for("social.auth", backend="google") }}">Google OpenId</a> <br /> 
+            <a href="{{ url_for("social.auth", backend="fedora") }}">Fedora</a> <br /> 
+        </div>
+    </div>
+</div>
+{% endblock %}
