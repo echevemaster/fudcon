@@ -22,6 +22,15 @@ class Config(object):
     UPLOADS_FOLDER = os.path.realpath('.') + '/fudcon/static/uploads'
     ALLOWED_EXTENSIONS = set(['jpeg', 'jpg', 'gif', 'png',
                              'txt', 'pdf'])
+    SOCIAL_AUTH_LOGIN_URL = '/login'
+    SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/done'
+    SOCIAL_AUTH_USER_MODEL = 'fudcon.modules.users.models.User'
+    SOCIAL_AUTH_AUTHENTICATION_BACKENDS = (
+        'social.backends.google.GoogleOpenId',
+        'social.backends.twitter.TwitterOAuth',
+        'social.backends.fedora.FedoraOpenId',
+        )
+    
 
 
 class ProductionConfig(Config):
