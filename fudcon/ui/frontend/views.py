@@ -1,15 +1,22 @@
 # -*- coding: utf-8 -*-
-from flask import Blueprint, render_template, g, url_for
+from flask import Blueprint, render_template, g, url_for, redirect
+from flask.ext.login import login_required, logout_user
+from fudcon.database import db
 from fudcon.modules.contents.models import Content
 from fudcon.modules.speakers.models import Speaker
 from fudcon.modules.sessions.models import Session
+# from fudcon.modules.users.models import User
 from fudcon.app import app
+# from fudcon.app import login_manager
 
 bp = Blueprint('frontend', __name__,
                template_folder='templates')
 
 items_per_page = app.config['ITEMS_PER_PAGE']
 
+
+# app.context_processor(backends)
+                            
 
 @bp.route('/', methods=['GET', 'POST'])
 def index():
@@ -83,3 +90,13 @@ def sessions(page=1):
                            talks=talks,
                            barcamps=barcamps,
                            workshops=workshops)
+
+@bp.route('/login', methods=['GET', 'POST'])
+def login():
+    return render_template('frontend/login.html')
+
+@bp.route('/logout')
+def logout():
+    logout_user()
+    return redirect('/')
+
