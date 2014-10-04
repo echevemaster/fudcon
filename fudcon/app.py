@@ -4,9 +4,15 @@ import logging
 from logging.handlers import RotatingFileHandler
 from flask import Flask, request, g, redirect, url_for, flash
 from flask.ext.fas_openid import FAS
+from flask.ext import login
 from fudcon.database import db
 from fudcon.ui.frontend.utils import avatar_url
 from functools import wraps
+from fudcon.modules.users.models import User
+from social.apps.flask_app.routes import social_auth
+from social.apps.flask_app.template_filters import backends
+from social.apps.flask_app.default.models import init_social
+
 # Instantiate application.
 app = Flask(__name__)
 app.config.from_object('config.DevelopmentConfig')
@@ -14,8 +20,47 @@ app.config.from_object('config.DevelopmentConfig')
 # Instantiate database object
 db.init_app(app)
 
+init_social(app, db)
+
+
 # Set up FAS
 FAS = FAS(app)
+
+login_manager = login.LoginManager()
+login_manager.login_view = 'login'
+login_manager.login_message = ''
+login_manager.init_app(app)
+
+app.context_processor(backends)
+
+# Set OpenID
+
+@login_manager.user_loader
+def load_user(user_id):
+    try:
+        return User.query.get(int(user_id))
+    except (TypeError, ValueError):
+        pass
+
+@app.before_request
+def global_user():
+    g.user = login.current_user
+
+@app.teardown_appcontext
+def commit_on_success(error=None):
+    if error is None:
+        db.session.commit()
+
+@app.teardown_request
+def shutdown_session(exception=None):
+    db.session.remove()
+
+@app.context_processor
+def inject_user():
+    try:
+        return {'user': g._user}
+    except AttributeError:
+        return {'user': None}
 
 
 def is_safe_url(target):
@@ -109,3 +154,4 @@ from fudcon.modules.auth.views import bp as auth_bp
 app.register_blueprint(frontend_bp)
 app.register_blueprint(auth_bp)
 app.register_blueprint(backend_bp)
+app.register_blueprint(social_auth)
