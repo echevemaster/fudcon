@@ -9,6 +9,10 @@
             <span class="text">Identificado como</span>
             <a href="">{{ g.fas_user.username }}</a>
             <a href="{{ url_for('auth.auth_logout') }}">Salir</a>
+        {% elif g.user %}
+            <a href="">{{ user }}</a>
+            <a href="{{ url_for('frontend.logout') }}">Salir</a>
+
             {% else %}
            <a href=""><a href="{{ url_for('auth.auth_login') }}?next={{request.url}}">Login</a>
            {% endif %}
@@ -34,6 +38,7 @@
             <li><a href="{{ url_for('frontend.venue') }}">Venue</a></li>
             <li><a href="{{ url_for('frontend.accomodation')}}">Alojamiento</a></li>
             <li><a href="{{ url_for('frontend.sponsors') }}">Sponsors</a></li>
+            <li><a href="{{ url_for('frontend.login') }}">Login</a></li>
             {% if is_admin %}
             <li><a href="{{ url_for('admin.index') }}">Admin</a></li>
             {% endif %}
