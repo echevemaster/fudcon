@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block css_custom %}
+
+{% endblock %}
+
+{% block js_custom %}
+<script src="{{ url_for('static', filename='js/delete_items.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    {% from "_pagination.html" import render_pagination %}
+    <div class="row">
+        <div class="large-12 colums">
+            <h4>Listar salas</h4>
+            {% include "_messages.html" %}
+
+            {{ render_pagination(rooms, 'admin.rooms') }}
+            <table class="responsive">
+                <thead>
+                    <tr>
+                        <th>Nombres</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for room in rooms.items %}
+                    <tr>
+                        <td>{{ room.name }}</td> 
+                        <td>
+                            <a href="{{ url_for('admin.edit_room', room_id=room.id) }}">
+                                <i class="fi-page-edit"></i>
+                            </a>
+                        <td>
+                            <a href="{{ url_for('admin.delete_room', room_id=room.id) }}" class="delete">
+                                <i class="fi-page-delete"></i>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <span>
+            <a class="button" href="{{ url_for('admin.add_room') }}">Añadir sala</a>
+    </div>
+        
+{% endblock content %}

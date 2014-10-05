@@ -1,4 +1,5 @@
 Flask==0.10.1
+Flask-Login==0.2.11
 Flask-SQLAlchemy==1.0
 Flask-Script==2.0.5
 Flask-WTF==0.10.0
@@ -19,6 +20,7 @@ python-fedora==0.3.36
 python-openid==2.2.5
 python-openid-cla==1.0
 python-openid-teams==1.0
+python-social-auth
 requests==2.3.0
 urllib3==1.9
 wsgiref==0.1.2

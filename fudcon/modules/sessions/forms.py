@@ -15,4 +15,6 @@ class AddSession(Form):
                                choices=[])
     fas = SelectField(u'Ponente',
                       choices=[])
+    room_id = SelectField(u'Sala', coerce=int,
+                               choices=[])
     active = BooleanField(u'Activo?:')

@@ -26,4 +26,5 @@ class Session(db.Model):
     description = db.Column(db.Text())
     session_type = db.Column(db.SmallInteger())
     fas = db.Column(db.String(255))
+    room_id = db.Column(db.Integer, db.ForeignKey('rooms.id'))
     active = db.Column(db.Boolean())
