@@ -15,6 +15,8 @@ from fudcon.modules.speakers.forms import AddSpeaker
 from fudcon.modules.sessions.models import (Session, TALKS,
                                             BARCAMPS, WORKSHOPS)
 from fudcon.modules.sessions.forms import AddSession
+from fudcon.modules.rooms.models import Room
+from fudcon.modules.rooms.forms import AddRoom
 from fudcon.app import app
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
@@ -169,6 +171,66 @@ def delete_speaker(speaker_id):
     flash('Ponente borrado')
     return redirect(request.referrer)
 
+
+@bp.route('/rooms', methods=['GET', 'POST'])
+@bp.route('/rooms/<int:page>', methods=['GET', 'POST'])
+@is_fudcon_admin
+def rooms(page=1):
+    paginate_params = (page, items_per_page, False)
+    queryset = Room.query.paginate(*paginate_params)
+    return render_template('backend/rooms.html',
+                           title='Listar salas',
+                           rooms=queryset)
+
+
+@bp.route('/rooms/add', methods=['GET', 'POST'])
+@is_fudcon_admin
+def add_room():
+    form = AddRoom()
+    action = url_for('admin.add_room')
+    if form.validate_on_submit():
+        room = Room(name=form.name.data,
+                          description=form.description.data,
+                          )
+        db.session.add(room)
+        db.session.commit()
+        flash(u'Sala creada')
+        return redirect(url_for('admin.rooms'))
+    return render_template('backend/rooms_actions.html',
+                           form=form,
+                           title=u"Añadir sala",
+                           action=action)
+
+
+@bp.route('/rooms/delete/<int:room_id>',
+          methods=['GET', 'POST'])
+@is_fudcon_admin
+def delete_room(room_id):
+    query_delete_room = Room.query.filter(
+        Room.id == room_id).first()
+    db.session.delete(query_delete_room)
+    db.session.commit()
+    flash('Sala borrada')
+    return redirect(request.referrer)
+
+
+@bp.route('/rooms/edit/<int:room_id>',
+          methods=['GET', 'POST'])
+@is_fudcon_admin
+def edit_room(room_id):
+    query_edit_room = Room.query.filter(Room.id ==
+                                              room_id).first()
+    form = AddRoom(obj=query_edit_room)
+    action = url_for('admin.edit_room', room_id=room_id)
+    if form.validate_on_submit():
+        form.populate_obj(query_edit_room)
+        db.session.commit()
+        flash('Sala actualizada')
+        return redirect(url_for('admin.rooms'))
+    return render_template('backend/rooms_actions.html',
+                           title=u'Editar sala',
+                           form=form,
+                           action=action)
 
 @bp.route('/sessions', methods=['GET', 'POST'])
 @bp.route('/sessions/<int:page>', methods=['GET', 'POST'])

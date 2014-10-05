@@ -17,7 +17,7 @@ class Config(object):
     FAS_OPENID_ENDPOINT = 'http://id.fedoraproject.org/'
     FAS_CHECK_CERT = True
     FUDCON_NAME = 'Fudcon Managua'
-    ADMIN_GROUP = ['provenpackager']
+    ADMIN_GROUP = ['fudcon']
     ITEMS_PER_PAGE = 10
     UPLOADS_FOLDER = os.path.realpath('.') + '/fudcon/static/uploads'
     ALLOWED_EXTENSIONS = set(['jpeg', 'jpg', 'gif', 'png',
@@ -49,7 +49,7 @@ class DevelopmentConfig(Config):
     SQLALCHEMY_DATABASE_URI = engine + ':///' + os.path.join(basedir,
                                                              db_name)
     DATABASE_CONNECT_OPTIONS = {}
-    sQLALCHEMY_ECHO = True
+    SQLALCHEMY_ECHO = True
     SECRET_KEY = 'This string will be replaced with a proper key in production'
     CSRF_SESSION_KEY = "somethingimpossibletoguess"
 
