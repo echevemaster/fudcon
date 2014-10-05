@@ -4,6 +4,7 @@
 from flask.ext.script import Manager
 from fudcon.database import db
 from fudcon.modules.speakers.models import Speaker  # noqa
+from fudcon.modules.rooms.models import Room  # noqa
 from fudcon.modules.sessions.models import Session  # noqa
 from fudcon.modules.contents.models import Content  # noqa
 from fudcon.modules.users.models import User  # noqa
