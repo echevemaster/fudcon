@@ -265,6 +265,8 @@ def add_session():
                           session_type=form.session_type.data,
                           fas=form.fas.data,
                           room_id=form.room_id.data,
+                          time_start=form.time_start.data,
+                          time_end=form.time_end.data,
                           active=form.active.data)
         db.session.add(session)
         db.session.commit()
