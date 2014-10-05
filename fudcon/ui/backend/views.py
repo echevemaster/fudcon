@@ -252,6 +252,9 @@ def add_session():
                       (BARCAMPS, 'Mesas de trabajo'),
                       (WORKSHOPS, 'Talleres')]
     form.session_type.choices = choices_session
+    query_room = Room.query.all()
+    choices_room = [(c.id, c.name) for c in query_room]
+    form.room_id.choices = choices_room
     query_fas = Speaker.query.filter(Speaker.active == 1).all()
     choices_fas = [(c.fas, c.names) for c in query_fas]
     form.fas.choices = choices_fas
@@ -261,6 +264,7 @@ def add_session():
                           description=form.description.data,
                           session_type=form.session_type.data,
                           fas=form.fas.data,
+                          room_id=form.room_id.data,
                           active=form.active.data)
         db.session.add(session)
         db.session.commit()
@@ -284,6 +288,9 @@ def edit_session(session_id):
                       (BARCAMPS, 'Mesas de trabajo'),
                       (WORKSHOPS, 'Talleres')]
     form.session_type.choices = choices_session
+    query_room = Room.query.all()
+    choices_room = [(c.id, c.name) for c in query_room]
+    form.room_id.choices = choices_room
     query_fas = Speaker.query.filter(Speaker.active == 1).all()
     choices_fas = [(c.fas, c.names) for c in query_fas]
     form.fas.choices = choices_fas
