@@ -137,3 +137,8 @@ footer {
   font-size: 15px;
   font-weight: bold;
 }
+
+.login-buttons {
+    width:88px;
+    height:auto;
+}
