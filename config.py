@@ -29,7 +29,14 @@ class Config(object):
         'social.backends.google.GoogleOpenId',
         'social.backends.twitter.TwitterOAuth',
         'social.backends.fedora.FedoraOpenId',
+        'social.backends.facebook.FacebookOAuth2',
         )
+    SOCIAL_AUTH_TWITTER_KEY = 'Kd9WxF07GKqjKZm9Rcjdj8MHx'
+    SOCIAL_AUTH_TWITTER_SECRET = '8NDXh4rsPe5uSUfavfnbrwJp837GZKxpfBX4CAVyRbP35Xhs2c'
+    SOCIAL_AUTH_FACEBOOK_KEY = '647259998720994'
+    SOCIAL_AUTH_FACEBOOK_SECRET = '4ff1d136e25c8242908c37ea5c10d338'
+    SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+    SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {'locale': 'es_ES'}
     
 
 
