@@ -21,7 +21,8 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(255))
     name  = db.Column(db.String(255))
     email = db.Column(db.String(255))
-    active = db.Column(db.Boolean())
+    active = db.Column(db.Boolean, default=True)
 
     def is_active(self):
         return self.active
+
