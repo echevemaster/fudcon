@@ -12,6 +12,7 @@ from fudcon.modules.users.models import User
 from social.apps.flask_app.routes import social_auth
 from social.apps.flask_app.template_filters import backends
 from social.apps.flask_app.default.models import init_social
+from social.exceptions import SocialAuthBaseException
 
 # Instantiate application.
 app = Flask(__name__)
@@ -27,24 +28,28 @@ init_social(app, db)
 FAS = FAS(app)
 
 login_manager = login.LoginManager()
-login_manager.login_view = 'login'
+login_manager.login_view = 'frontend.login'
 login_manager.login_message = ''
 login_manager.init_app(app)
 
-app.context_processor(backends)
 
 # Set OpenID
 
 @login_manager.user_loader
 def load_user(user_id):
-    try:
+   """ try:
         return User.query.get(int(user_id))
     except (TypeError, ValueError):
-        pass
+        pass"""
+   a = User.query.get(int(user_id))
+   print 'the username is %s' % (a)
+   return User.query.get(int(user_id))
+   # return User(a.username)
 
 @app.before_request
 def global_user():
     g.user = login.current_user
+    print 'current_user: %s, g_user: %s'% (login.current_user, g.user)
 
 @app.teardown_appcontext
 def commit_on_success(error=None):
@@ -58,9 +63,15 @@ def shutdown_session(exception=None):
 @app.context_processor
 def inject_user():
     try:
-        return {'user': g._user}
+        return {'user': g.user}
     except AttributeError:
         return {'user': None}
+
+@app.errorhandler(500)
+def error_handler(error):
+    if isinstance(error, SocialAuthBaseException):
+        return redirect('/socialerror')
+
 
 
 def is_safe_url(target):
@@ -155,3 +166,5 @@ app.register_blueprint(frontend_bp)
 app.register_blueprint(auth_bp)
 app.register_blueprint(backend_bp)
 app.register_blueprint(social_auth)
+
+app.context_processor(backends)
