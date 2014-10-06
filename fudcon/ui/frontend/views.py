@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-from flask import Blueprint, render_template, g, url_for, redirect
+from flask import Blueprint, render_template, g, url_for, redirect, flash
 from flask.ext.login import login_required, logout_user
 from fudcon.database import db
 from fudcon.modules.contents.models import Content
 from fudcon.modules.speakers.models import Speaker
 from fudcon.modules.sessions.models import Session
-# from fudcon.modules.users.models import User
+from fudcon.modules.users.models import User
+from fudcon.modules.users.forms import UserForm
 from fudcon.app import app
 # from fudcon.app import login_manager
 
@@ -93,7 +94,25 @@ def sessions(page=1):
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
+    print g.user
     return render_template('frontend/login.html')
+
+@login_required
+@bp.route('/done', methods=['GET', 'POST'])
+def done():
+    queryset = User.query.filter(User.username == g.user.username).first()
+    form = UserForm(obj=queryset)
+    # action = url_for('frontend.done')
+    if form.validate_on_submit():
+        form.populate_obj(queryset)
+        db.session.commit()
+        flash('Registro actualizado')
+        return redirect(url_for('frontend.done'))
+
+    return render_template('frontend/done.html',
+                           title=u'Actualizado con éxito',
+                           ##aion=action,
+                           form=form)
 
 @bp.route('/logout')
 def logout():
