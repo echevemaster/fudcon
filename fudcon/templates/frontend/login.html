@@ -6,9 +6,18 @@
 {% block content %}
 <div class="row">
     <div class="large-12 columns">
+        <div class="panel">
+            Puedes loguearte con cualquiera de estas redes sociales, al finalizar el registro se te pedira 
+            introducir tu nombre
+        </div>
         <div class="content">
-            <a href="{{ url_for("social.auth", backend="google") }}">Google OpenId</a> <br /> 
-            <a href="{{ url_for("social.auth", backend="fedora") }}">Fedora</a> <br /> 
+            <a href="{{ url_for("social.auth", backend="google") }}"><img src="{{ url_for('static', filename='img/google.gif') }}" class="login-buttons"/></a>
+            <a href="{{ url_for("social.auth", backend="fedora") }}"><img src="{{ url_for('static', filename='img/fedora-logo.png')}}" class="login-buttons"/></a>
+            <a href="{{ url_for("social.auth", backend="twitter") }}"><img src="{{ url_for('static', filename='img/twitter.gif') }}" class="login-buttons"/></a>
+            <a href="{{ url_for("social.auth", backend="facebook") }}"> 
+                <img src="{{ url_for('static', filename='img/facebook.gif') }}" class="login-buttons"/>
+            </a>
+        
         </div>
     </div>
 </div>

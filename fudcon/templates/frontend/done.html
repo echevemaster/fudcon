@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block css_custom %}
+
+{% endblock %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block content %}
+<div class="row">
+    <div class="large-12 columns">
+        <div class="content">
+            <h4>Hola {{ user.username }}</h4>
+            <div class="panel">
+                Necesitamos de algunos de tus datos personales
+                para poder tener un registro de asistentes a nuestras
+                charlas, por favor sientete libre de poder proporcionarnos
+                tu nombre.
+            </div>
+            {% include "_messages.html" %}
+            <form method="post" action="">
+                <fieldset>
+                    <legend></legend>
+                    {{ render_field(form.hidden_tag) }}
+                    {{ render_field(form.name) }}
+                    {{ render_field(form.email )}}
+                </fieldset>
+                <input type="submit" class="button" value="Enviar"/>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
