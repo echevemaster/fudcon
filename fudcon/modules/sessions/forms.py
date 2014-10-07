@@ -3,7 +3,7 @@ from flask.ext.wtf import Form
 from wtforms import (TextField, BooleanField,
                      TextAreaField, SelectField)
 from wtforms_components import TimeField
-from wtforms.validators import Required
+from wtforms.validators import Required, Optional
 
 
 class AddSession(Form):
@@ -18,6 +18,8 @@ class AddSession(Form):
                       choices=[])
     room_id = SelectField(u'Sala', coerce=int,
                                choices=[])
-    time_start = TimeField(u'Hora de inicio')
-    time_end = TimeField(u'Hora de fin')
+    day = SelectField(u'Ingrese el día', coerce=int, choices=[(23,'23'), (24,'24'), (25,'25')])
+    time_start = TimeField(u'Hora de inicio', [Optional()])
+    time_end = TimeField(u'Hora de fin', [Optional()])
+
     active = BooleanField(u'Activo?:')
