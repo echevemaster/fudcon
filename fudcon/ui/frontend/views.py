@@ -5,6 +5,7 @@ from fudcon.database import db
 from fudcon.modules.contents.models import Content
 from fudcon.modules.speakers.models import Speaker
 from fudcon.modules.sessions.models import Session
+from fudcon.modules.sessions.forms import SessionsToVote
 from fudcon.modules.users.models import User
 from fudcon.modules.users.forms import UserForm
 from fudcon.app import app
@@ -15,9 +16,6 @@ bp = Blueprint('frontend', __name__,
 
 items_per_page = app.config['ITEMS_PER_PAGE']
 
-
-# app.context_processor(backends)
-                            
 
 @bp.route('/', methods=['GET', 'POST'])
 def index():
@@ -86,16 +84,18 @@ def sessions(page=1):
                                     Session.session_type == 2).all()
     workshops = Session.query.filter(Session.active == 1,
                                      Session.session_type == 3).all()
-    return render_template('frontend/sessions.html', 
+    return render_template('frontend/sessions.html',
                            title=u'Sesiones',
                            talks=talks,
                            barcamps=barcamps,
                            workshops=workshops)
 
+
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
     print g.user
     return render_template('frontend/login.html')
+
 
 @login_required
 @bp.route('/done', methods=['GET', 'POST'])
@@ -111,11 +111,34 @@ def done():
 
     return render_template('frontend/done.html',
                            title=u'Actualizado con éxito',
-                           ##aion=action,
                            form=form)
+
+
+@login_required
+@bp.route('/votation-talks', methods=['GET', 'POST'])
+def votation_talks():
+    user_vote = g.user.username
+    session_type = 1
+    form = SessionsToVote()
+    queryset = Session.query.filter(Session.active == 1,
+                                    Session.session_type == 1).all()
+    array_session = []
+    for item in queryset:
+        id_session = form.session_id.data = item.id
+        print form.session_id.data
+        values = (id_session,)
+        v = list(values)
+    t = array_session.append(v)
+    return render_template('frontend/votation_talks.html',
+                           title=u'Elige tus charlas favoritas',
+                           votes=queryset,
+                           form=form,
+                           user_vote=user_vote,
+                           session_type=session_type,
+                           t=t)
+
 
 @bp.route('/logout')
 def logout():
     logout_user()
     return redirect('/')
-

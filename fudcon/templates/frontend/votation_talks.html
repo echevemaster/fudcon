@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block css_custom %}
+
+{% endblock %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block content %}
+<div class="row">
+    <div class="large-12 columns">
+        <div class="content">
+            <form method="POST" action="">
+            <table>
+            {% for vote in votes %}
+                <tr>
+                    <td>{{ vote.name }}</td>
+                    {{ render_field(form.session_id) }}
+                    <td>{{ render_field(form.value)}}</td>
+               </tr>    
+            {% endfor %}
+            </table>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

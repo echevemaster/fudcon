@@ -11,7 +11,7 @@
             introducir tu nombre
         </div>
         <div class="content">
-            <a href="{{ url_for("social.auth", backend="google") }}"><img src="{{ url_for('static', filename='img/google.gif') }}" class="login-buttons"/></a>
+            <a href="{{ url_for("social.auth", backend="google-oauth2") }}"><img src="{{ url_for('static', filename='img/google.gif') }}" class="login-buttons"/></a>
             <a href="{{ url_for("social.auth", backend="fedora") }}"><img src="{{ url_for('static', filename='img/fedora-logo.png')}}" class="login-buttons"/></a>
             <a href="{{ url_for("social.auth", backend="twitter") }}"><img src="{{ url_for('static', filename='img/twitter.gif') }}" class="login-buttons"/></a>
             <a href="{{ url_for("social.auth", backend="facebook") }}"> 

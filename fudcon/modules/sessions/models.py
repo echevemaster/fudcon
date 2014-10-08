@@ -31,3 +31,13 @@ class Session(db.Model):
     time_start = db.Column(db.Time(timezone=False))
     time_end = db.Column(db.Time(timezone=False))
     active = db.Column(db.Boolean())
+
+
+class SessionVoted(db.Model):
+    __tablename__ = 'sessions_voted'
+
+    id = db.Column(db.Integer, primary_key=True)
+    session_type = db.Column(db.SmallInteger())
+    session_id = db.Column(db.Integer())
+    voter = db.Column(db.String(255))
+    value = db.Column(db.Boolean())
