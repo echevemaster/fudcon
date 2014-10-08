@@ -3,6 +3,7 @@
 {% endblock css_custom %}
 
 {% block content %}
+    {% from "_pagination.html" import render_pagination %}
     <div class="row">
         <div class="large-12 columns">
             <h4>Ponentes</h4>
@@ -25,6 +26,7 @@
                         </div>
                     </div>
                 {% endfor %}
+                {{ render_pagination(speakers, 'frontend.speakers') }}
             </div>
         </div>
     </div>

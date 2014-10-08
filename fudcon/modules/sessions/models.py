@@ -27,6 +27,7 @@ class Session(db.Model):
     session_type = db.Column(db.SmallInteger())
     fas = db.Column(db.String(255))
     room_id = db.Column(db.Integer, db.ForeignKey('rooms.id'))
+    day = db.Column(db.Integer)
     time_start = db.Column(db.Time(timezone=False))
     time_end = db.Column(db.Time(timezone=False))
     active = db.Column(db.Boolean())
