@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-from flask import Blueprint, render_template, g, url_for, redirect, flash
+from flask import (Blueprint, render_template, g,
+                   url_for, redirect, flash, request)
 from flask.ext.login import login_required, logout_user
 from fudcon.database import db
 from fudcon.modules.contents.models import Content
 from fudcon.modules.speakers.models import Speaker
-from fudcon.modules.sessions.models import Session
-from fudcon.modules.sessions.forms import SessionsToVote
+from fudcon.modules.sessions.models import Session, SessionVoted
 from fudcon.modules.users.models import User
 from fudcon.modules.users.forms import UserForm
 from fudcon.app import app
@@ -119,23 +119,31 @@ def done():
 def votation_talks():
     user_vote = g.user.username
     session_type = 1
-    form = SessionsToVote()
     queryset = Session.query.filter(Session.active == 1,
                                     Session.session_type == 1).all()
-    array_session = []
-    for item in queryset:
-        id_session = form.session_id.data = item.id
-        print form.session_id.data
-        values = (id_session,)
-        v = list(values)
-    t = array_session.append(v)
+    has_voted = SessionVoted.query.filter(SessionVoted.voter ==
+                                          user_vote).count()
+    if request.method == 'POST':
+        for item in queryset:
+            session_id = 'session_id_{}'.format(item.id)
+            value = 'vote_{}'.format(item.id)
+            args_id = request.form.get(session_id)
+            args_value = request.form.get(value)
+            votes = SessionVoted(session_type=session_type,
+                                 session_id=args_id,
+                                 voter=user_vote,
+                                 value=args_value)
+            db.session.add(votes)
+        db.session.commit()
+        flash(u'Ud ha votado con éxito')
+        return redirect(url_for('frontend.done'))
+
     return render_template('frontend/votation_talks.html',
                            title=u'Elige tus charlas favoritas',
                            votes=queryset,
-                           form=form,
                            user_vote=user_vote,
                            session_type=session_type,
-                           t=t)
+                           has_voted=has_voted)
 
 
 @bp.route('/logout')
