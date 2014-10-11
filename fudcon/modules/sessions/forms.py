@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask.ext.wtf import Form
 from wtforms import (TextField, BooleanField,
-                     TextAreaField, SelectField,
-                     HiddenField)
+                     TextAreaField, SelectField)
 from wtforms_components import TimeField
 from wtforms.validators import Required, Optional
 
@@ -27,9 +26,3 @@ class AddSession(Form):
     time_end = TimeField(u'Hora de fin', [Optional()])
 
     active = BooleanField(u'Activo?:')
-
-
-class SessionsToVote(Form):
-    session_id = HiddenField(label=None)
-    value = BooleanField(u'¿Quieres asistir?')
-
