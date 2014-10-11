@@ -8,17 +8,28 @@
 <div class="row">
     <div class="large-12 columns">
         <div class="content">
+            <h4>Pre-selección de charlas</h4>
+            {% if has_voted > 0 %}
+                <div class=panel>Ud. ya ha votado por las charlas, su información
+                    será utilizada para llevar una estadistica de las charlas
+                    a presentar
+                </div>
+            {% else %}
             <form method="POST" action="">
-            <table>
+                <table>
+                    <th>Charla</th>
+                    <th colspan="2">¿Desea asistir?</th>
             {% for vote in votes %}
                 <tr>
                     <td>{{ vote.name }}</td>
-                    {{ render_field(form.session_id) }}
-                    <td>{{ render_field(form.value)}}</td>
+                    <td><input type="hidden" name="session_id_{{ vote.id}}" value="{{ vote.id }}"></td>
+                    <td><input type="checkbox" name="vote_{{ vote.id }}" value='1'></td>
                </tr>    
             {% endfor %}
-            </table>
-            </form>
+        </table>
+        <input type="submit" value="Votar!"/>
+    </form>
+    {% endif %}
         </div>
     </div>
 </div>
