@@ -6,13 +6,14 @@ from flask import (Blueprint,
                    redirect, render_template,
                    url_for, flash, request)
 from werkzeug import secure_filename
+from sqlalchemy.sql import func
 from fudcon.app import is_fudcon_admin, app
 from fudcon.database import db
 from fudcon.modules.contents.forms import AddPage
 from fudcon.modules.contents.models import Content
 from fudcon.modules.speakers.models import Speaker
 from fudcon.modules.speakers.forms import AddSpeaker
-from fudcon.modules.sessions.models import (Session, TALKS,
+from fudcon.modules.sessions.models import (Session, SessionVoted, TALKS,
                                             BARCAMPS, WORKSHOPS)
 from fudcon.modules.sessions.forms import AddSession
 from fudcon.modules.rooms.models import Room
@@ -190,8 +191,7 @@ def add_room():
     action = url_for('admin.add_room')
     if form.validate_on_submit():
         room = Room(name=form.name.data,
-                          description=form.description.data,
-                          )
+                    description=form.description.data,)
         db.session.add(room)
         db.session.commit()
         flash(u'Sala creada')
@@ -219,7 +219,7 @@ def delete_room(room_id):
 @is_fudcon_admin
 def edit_room(room_id):
     query_edit_room = Room.query.filter(Room.id ==
-                                              room_id).first()
+                                        room_id).first()
     form = AddRoom(obj=query_edit_room)
     action = url_for('admin.edit_room', room_id=room_id)
     if form.validate_on_submit():
@@ -231,6 +231,7 @@ def edit_room(room_id):
                            title=u'Editar sala',
                            form=form,
                            action=action)
+
 
 @bp.route('/sessions', methods=['GET', 'POST'])
 @bp.route('/sessions/<int:page>', methods=['GET', 'POST'])
@@ -308,7 +309,7 @@ def edit_session(session_id):
                            action=action)
 
 
-@bp.route('sessions/delete/<int:session_id>',
+@bp.route('/sessions/delete/<int:session_id>',
           methods=['GET', 'POST'])
 @is_fudcon_admin
 def delete_session(session_id):
@@ -319,6 +320,21 @@ def delete_session(session_id):
     flash(u'Sesión Borrada')
     return redirect(request.referrer)
 
+
+@bp.route('/votation_talks',
+          methods=['GET', 'POST'])
+@is_fudcon_admin
+def votation_talks():
+    query_votation_talks = Session.query.\
+        with_entities(Session.name,
+                      db.func.count(SessionVoted.value).label('count_talks')).\
+        join(Session.votes).group_by(Session.id).\
+        filter(Session.active == 1,
+               Session.session_type == 1).all()
+
+    return render_template('backend/votation_talks.html',
+                           title=u'Ver votación',
+                           talks=query_votation_talks)
 
 @bp.route('/uploads', methods=['GET', 'POST'])
 @is_fudcon_admin
