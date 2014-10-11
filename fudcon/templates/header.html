@@ -31,6 +31,10 @@
             <li><a href="{{ url_for('admin.speakers') }}">Ponentes</a></li>
             <li><a href="{{ url_for('admin.rooms') }}">Rooms</a></li>
             <li><a href="{{ url_for('admin.sessions') }}">Sesiones</a></li>
+            <li><a href="#" data-dropdown="hover1" data-options="is_hover:false">Votación</a></li>
+            <ul id="hover1" class="f-dropdown" data-dropdown-content>
+                <li><a href="{{ url_for('admin.votation_talks')}}">Charlas</a></li>
+            </ul>
 
             {% else %}
             <li><a href="{{ url_for('frontend.index') }}">Home</a></li>
