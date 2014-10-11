@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block css_custom %}
+
+{% endblock %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="large-12 columns">
+            <h4>Votación de charlas</h4>
+        <table class="responsive">
+            {% for talk in talks %}
+                <tr>
+                    <td>{{ talk.name }}</td>
+                    <td>{{ talk.count_talks }}</td>
+                </tr>
+
+            {% endfor %}
+        </table>
+        </div>
+    </div>
+        
+{% endblock content %}
