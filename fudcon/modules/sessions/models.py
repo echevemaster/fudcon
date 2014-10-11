@@ -31,6 +31,7 @@ class Session(db.Model):
     time_start = db.Column(db.Time(timezone=False))
     time_end = db.Column(db.Time(timezone=False))
     active = db.Column(db.Boolean())
+    votes = db.relationship('SessionVoted', backref='sessions', lazy='dynamic')
 
 
 class SessionVoted(db.Model):
@@ -38,6 +39,6 @@ class SessionVoted(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     session_type = db.Column(db.SmallInteger())
-    session_id = db.Column(db.Integer())
+    session_id = db.Column(db.Integer(), db.ForeignKey('sessions.id'))
     voter = db.Column(db.String(255))
     value = db.Column(db.Boolean())
