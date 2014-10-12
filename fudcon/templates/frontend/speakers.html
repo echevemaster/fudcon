@@ -18,13 +18,6 @@
                             <h5 class="speakers--title">{{ speaker.names }}<h5>
                                     {{ speaker.bio | safe }}
                                    
-                                   {#
-                                    {% if speaker.active == 1 %}
-                                        <span class="">Confirmado</span>
-                                    {% else %}
-                                        <span class="">No confirmado</span>
-                                        {% endif %}
-                                    #}    
                         </div>
                     </div>
                 {% endfor %}
