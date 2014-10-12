@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 from flask import (Blueprint, render_template, g,
                    url_for, redirect, flash, request)
 from sqlalchemy import or_
@@ -17,6 +18,7 @@ bp = Blueprint('frontend', __name__,
                template_folder='templates')
 
 items_per_page = app.config['ITEMS_PER_PAGE']
+upload_folder = app.config['UPLOADS_FOLDER']
 
 
 @bp.route('/', methods=['GET', 'POST'])
@@ -214,6 +216,30 @@ def votation_workshops():
                            title="Elige tu taller",
                            action=action,
                            has_voted=has_voted)
+
+
+def make_tree(path):
+    tree = dict(name=os.path.basename(path), children=[])
+    try:
+        lst = os.listdir(path)
+    except OSError:
+        pass  # ignore errors
+    else:
+        for name in lst:
+            fn = os.path.join(path, name)
+            if os.path.isdir(fn):
+                tree['children'].append(make_tree(fn))
+            else:
+                tree['children'].append(dict(name=name))
+    return tree
+
+
+@bp.route('/download_slides')
+def dirtree():
+    path = os.path.expanduser(upload_folder)
+    return render_template('frontend/dirtree.html',
+                           tree=make_tree(path),
+                           path_file=path)
 
 
 @bp.route('/logout')

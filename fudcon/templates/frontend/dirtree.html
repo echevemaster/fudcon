@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block css_custom %}
+
+{% endblock %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block content %}
+<div class="row">
+    <div class="large-12 columns">
+        <div class="content">
+            <h4>Bajar diapositivas</h4>
+            <ul>
+            {%- for item in tree.children recursive %}
+             <li><a href="{{ url_for('static', filename='uploads/'+ item.name) }}">{{ item.name }}
+            {%- if item.children -%}
+            <ul>{{ loop(item.children) }}</ul>
+            {%- endif %}</a></li>
+           {%- endfor %} 
+        </div>
+    </div>
+</div>
+{% endblock %}
