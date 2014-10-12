@@ -14,7 +14,7 @@
                 <a href="{{  url_for('frontend.done') }}">{{ user.username }}</a>
                 <a href="{{ url_for('frontend.logout') }}">Salir</a>
             {% else %}
-                <a href=""><a href="{{ url_for('frontend.login') }}?next={{request.url}}">Login  </a>
+                <a href=""><a href="{{ url_for('frontend.login') }}?next={{request.url}}">Login o registrarse  </a>
            {% endif %}
         </span>
         </div>
