@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block css_custom %}
+
+{% endblock %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block content %}
+<div class="row">
+    <div class="large-12 columns">
+        <div class="content">
+            <h4>{{ title }}</h4>
+            {% if has_voted > 0 %}
+                <div class="panel">
+                    Ud. ya ha elegido el taller al  cual desea asistir
+                    ó ya eligió una mesa de trabajo
+            </div>
+            {% else %}
+            <form method="post" action="">
+                <fieldset>
+                    <legend></legend>
+                   {{ render_field(form.session_id) }}
+                </fieldset>
+                <input type="submit" value="Elegir">
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
