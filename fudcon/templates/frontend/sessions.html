@@ -31,14 +31,16 @@
             <h5>Talleres</h5>
             <div class="content">
                 {% for workshop in workshops %}
-                    <div class="large-2 columns">
+                    <div class="sessions">
+                    <div class="sessions--avatar large-2 columns">
                         {{ workshop.fas | avatar | safe }}
                     </div>
 
-                    <div class="large-10 columns">
-                        <h5 class="sessions">{{ workshop.name }}</h5>
+                    <div class="sessions--description large-10 columns">
+                        <h5 class="sessions--title">{{ workshop.name }}</h5>
                                 <span class="topic">Tópico: {{ workshop.topic }}</span>
-                    </div>
+                         </div>
+                   </div>
                     
                 {% endfor %}
 
@@ -47,15 +49,16 @@
             <h5>Mesas de trabajo</h5>
             <div class="content">
                 {% for barcamp in barcamps %}
-                    <div class="large-2 columns">
+                    <div class="sessions">
+                    <div class="sessions-avatar large-2 columns">
                         {{ barcamp.fas | avatar | safe }}
                     </div>
 
-                    <div class="large-10 columns">
-                        <h5 class="sessions">{{ barcamp.name }}</h5>
+                    <div class="sessions--description large-10 columns">
+                        <h5 class="sessions--title">{{ barcamp.name }}</h5>
                                 <span class="topic">Tópico: {{ barcamp.topic }}</span>
                     </div>
-                    
+                </div>
                 {% endfor %}
 
             </div>
