@@ -18,7 +18,7 @@ bp = Blueprint('frontend', __name__,
                template_folder='templates')
 
 items_per_page = app.config['ITEMS_PER_PAGE']
-upload_folder = app.config['UPLOADS_FOLDER']
+upload_folder = app.config['TALKS_FOLDER']
 
 
 @bp.route('/', methods=['GET', 'POST'])
