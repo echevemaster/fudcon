@@ -26,3 +26,9 @@ class AddSession(Form):
     time_end = TimeField(u'Hora de fin', [Optional()])
 
     active = BooleanField(u'Activo?:')
+
+
+class AddBarcamp(Form):
+    session_id = SelectField(u'Elija su sesión preferida',
+                             coerce=int,
+                             choices=[])
