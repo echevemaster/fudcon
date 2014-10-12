@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import (Blueprint, render_template, g,
                    url_for, redirect, flash, request)
+from sqlalchemy import or_
 from flask.ext.login import login_required, logout_user
 from fudcon.database import db
 from fudcon.modules.contents.models import Content
@@ -8,6 +9,7 @@ from fudcon.modules.speakers.models import Speaker
 from fudcon.modules.sessions.models import Session, SessionVoted
 from fudcon.modules.users.models import User
 from fudcon.modules.users.forms import UserForm
+from fudcon.modules.sessions.forms import AddBarcamp
 from fudcon.app import app
 # from fudcon.app import login_manager
 
@@ -143,6 +145,74 @@ def votation_talks():
                            votes=queryset,
                            user_vote=user_vote,
                            session_type=session_type,
+                           has_voted=has_voted)
+
+
+@login_required
+@bp.route('/votation-barcamps', methods=['GET', 'POST'])
+def votation_barcamps():
+    user_vote = g.user.username
+    session_type = 2
+    queryset = Session.query.\
+        filter(Session.active == 1,
+               Session.session_type ==
+               session_type).all()
+    has_voted = SessionVoted.query.\
+        filter(SessionVoted.voter == user_vote,
+               or_(SessionVoted.session_type == 2,
+                   SessionVoted.session_type == 3)).count()
+    form = AddBarcamp()
+    choices_sessions = [(c.id, c.name) for c in queryset]
+    form.session_id.choices = choices_sessions
+    action = url_for('frontend.votation_barcamps')
+    if request.method == 'POST':
+        barcamp = SessionVoted(session_type=session_type,
+                               session_id=form.session_id.data,
+                               voter=user_vote,
+                               value=1)
+        db.session.add(barcamp)
+        db.session.commit()
+        flash(u'Ud ha asegurado su asistencia \
+              a la mesa de trabajo seleccionada')
+        return redirect(url_for('frontend.done'))
+    return render_template('frontend/votation_barcamps.html',
+                           form=form,
+                           title="Elige tu mesa de trabajo",
+                           action=action,
+                           has_voted=has_voted)
+
+
+@login_required
+@bp.route('/votation-workshops', methods=['GET', 'POST'])
+def votation_workshops():
+    user_vote = g.user.username
+    session_type = 3
+    queryset = Session.query.\
+        filter(Session.active == 1,
+               Session.session_type ==
+               session_type).all()
+    has_voted = SessionVoted.query.\
+        filter(SessionVoted.voter == user_vote,
+               or_(SessionVoted.session_type == 2,
+                   SessionVoted.session_type == 3)).count()
+    form = AddBarcamp()
+    choices_sessions = [(c.id, c.name) for c in queryset]
+    form.session_id.choices = choices_sessions
+    action = url_for('frontend.votation_workshops')
+    if request.method == 'POST':
+        workshop = SessionVoted(session_type=session_type,
+                                session_id=form.session_id.data,
+                                voter=user_vote,
+                                value=1)
+        db.session.add(workshop)
+        db.session.commit()
+        flash(u'Ud ha asegurado su asistencia \
+              al taller seleccionado')
+        return redirect(url_for('frontend.done'))
+    return render_template('frontend/votation_workshops.html',
+                           form=form,
+                           title="Elige tu taller",
+                           action=action,
                            has_voted=has_voted)
 
 
