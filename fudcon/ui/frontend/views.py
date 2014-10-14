@@ -20,6 +20,7 @@ bp = Blueprint('frontend', __name__,
 
 items_per_page = app.config['ITEMS_PER_PAGE']
 upload_folder = app.config['TALKS_FOLDER']
+deadline = app.config['OPEN_WORKSHOP_AND_BARCAMPS']
 
 
 @bp.route('/', methods=['GET', 'POST'])
@@ -154,7 +155,7 @@ def votation_talks():
 @login_required
 @bp.route('/votation-barcamps', methods=['GET', 'POST'])
 def votation_barcamps():
-    if datetime.datetime.utcnow() >= app.config['OPEN_WORKSHOP_AND_BARCAMPS']:
+    if datetime.datetime.utcnow() >= deadline:
         opened = True
     else:
         opened = False
@@ -194,7 +195,7 @@ def votation_barcamps():
 @login_required
 @bp.route('/votation-workshops', methods=['GET', 'POST'])
 def votation_workshops():
-    if datetime.datetime.utcnow() >= app.config['OPEN_WORKSHOP_AND_BARCAMPS']:
+    if datetime.datetime.utcnow() >= deadline:
         opened = True
     else:
         opened = False
