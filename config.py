@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import datetime
 # Belonging to the path of  sqlite development database.
 basedir = os.path.abspath(os.path.dirname(__file__))
 engine = 'sqlite'  # sqlite, Mysql, postgres and so on.
@@ -20,6 +21,8 @@ class Config(object):
     ADMIN_GROUP = ['fudcon']
     ITEMS_PER_PAGE = 10
     UPLOADS_FOLDER = os.path.realpath('.') + '/fudcon/static/uploads'
+    TALKS_FOLDER = os.path.realpath('.') + '/fudcon/static/slides'
+    OPEN_WORKSHOP_AND_BARCAMPS = datetime.datetime(2014, 10, 20)
     ALLOWED_EXTENSIONS = set(['jpeg', 'jpg', 'gif', 'png',
                              'txt', 'pdf'])
     SOCIAL_AUTH_LOGIN_URL = '/login'
