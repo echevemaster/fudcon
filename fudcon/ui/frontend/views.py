@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import datetime
 from flask import (Blueprint, render_template, g,
                    url_for, redirect, flash, request)
 from sqlalchemy import or_
@@ -153,6 +154,11 @@ def votation_talks():
 @login_required
 @bp.route('/votation-barcamps', methods=['GET', 'POST'])
 def votation_barcamps():
+    if datetime.datetime.utcnow() >= app.config['OPEN_WORKSHOP_AND_BARCAMPS']:
+        opened = True
+    else:
+        opened = False
+
     user_vote = g.user.username
     session_type = 2
     queryset = Session.query.\
@@ -181,12 +187,18 @@ def votation_barcamps():
                            form=form,
                            title="Elige tu mesa de trabajo",
                            action=action,
-                           has_voted=has_voted)
+                           has_voted=has_voted,
+                           opened=opened)
 
 
 @login_required
 @bp.route('/votation-workshops', methods=['GET', 'POST'])
 def votation_workshops():
+    if datetime.datetime.utcnow() >= app.config['OPEN_WORKSHOP_AND_BARCAMPS']:
+        opened = True
+    else:
+        opened = False
+
     user_vote = g.user.username
     session_type = 3
     queryset = Session.query.\
@@ -215,7 +227,8 @@ def votation_workshops():
                            form=form,
                            title="Elige tu taller",
                            action=action,
-                           has_voted=has_voted)
+                           has_voted=has_voted,
+                           opened=opened)
 
 
 def make_tree(path):
