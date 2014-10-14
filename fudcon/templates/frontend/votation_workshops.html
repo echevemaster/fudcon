@@ -9,7 +9,14 @@
     <div class="large-12 columns">
         <div class="content">
             <h4>{{ title }}</h4>
-            {% if has_voted > 0 %}
+            {% if opened != True %}
+                <div class="panel">
+                    Aún no se han abierto estas votaciones
+                    al público
+                 </div>
+            {% else %}
+
+            {% if has_voted > 0 and opened == True%}
                 <div class="panel">
                     Ud. ya ha elegido el taller al  cual desea asistir
                     ó ya eligió una mesa de trabajo
@@ -22,7 +29,8 @@
                 </fieldset>
                 <input type="submit" value="Elegir">
             </form>
-            {% endif %}
+        {% endif %}
+        {% endif %}
         </div>
     </div>
 </div>
