@@ -332,7 +332,8 @@ def votation_talks():
         join(Session.votes).group_by(Session.id).\
         filter(Session.active == 1,
                Session.session_type == 1).all()
-    query_users = User.query.count()
+    query_users = User.query.filter(User.active == 1).count()
+    print query_users
 
     return render_template('backend/votation_talks.html',
                            title=u'Ver votación',
