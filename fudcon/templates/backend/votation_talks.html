@@ -8,7 +8,10 @@
     <div class="row">
         <div class="large-12 columns">
             <h4>Votación de charlas</h4>
-        <table class="responsive">
+            <table class="responsive">
+                <div class="panel">
+                    Hay {{ count_users }} registrados
+                    </div>
             {% for talk in talks %}
                 <tr>
                     <td>{{ talk.name }}</td>
