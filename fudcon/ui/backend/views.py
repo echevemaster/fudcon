@@ -12,6 +12,7 @@ from fudcon.database import db
 from fudcon.modules.contents.forms import AddPage
 from fudcon.modules.contents.models import Content
 from fudcon.modules.speakers.models import Speaker
+from fudcon.modules.users.models import User
 from fudcon.modules.speakers.forms import AddSpeaker
 from fudcon.modules.sessions.models import (Session, SessionVoted, TALKS,
                                             BARCAMPS, WORKSHOPS)
@@ -331,10 +332,12 @@ def votation_talks():
         join(Session.votes).group_by(Session.id).\
         filter(Session.active == 1,
                Session.session_type == 1).all()
+    query_users = User.query.count()
 
     return render_template('backend/votation_talks.html',
                            title=u'Ver votación',
-                           talks=query_votation_talks)
+                           talks=query_votation_talks,
+                           count_users=query_users)
 
 @bp.route('/uploads', methods=['GET', 'POST'])
 @is_fudcon_admin
