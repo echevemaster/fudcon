@@ -154,7 +154,7 @@ def votation_talks():
 @login_required
 @bp.route('/votation-barcamps', methods=['GET', 'POST'])
 def votation_barcamps():
-    if datetime.datetime.utcnow() >= datetime.datetime(2014, 10, 20):
+    if datetime.datetime.utcnow() >= datetime.datetime(2014, 10, 21):
         opened = True
     else:
         opened = False
@@ -194,7 +194,7 @@ def votation_barcamps():
 @login_required
 @bp.route('/votation-workshops', methods=['GET', 'POST'])
 def votation_workshops():
-    if datetime.datetime.utcnow() >= datetime.datetime(2014, 10, 20):
+    if datetime.datetime.utcnow() >= datetime.datetime(2014, 10, 21):
         opened = True
     else:
         opened = False
