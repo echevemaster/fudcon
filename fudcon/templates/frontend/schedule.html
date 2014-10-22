@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block css_custom %}
+
+{% endblock %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block content %}
+<div class="row">
+    <div class="large-12 columns">
+        <div class="content">
+            <h4>Cronograma</h4>
+            <table class="responsive">
+                <thead>
+                <tr>
+                    <th>Charla</th>
+                    <th>Dia</th>
+                    <th>Hora de inicio</th>
+                    <th>Hora de cierre</th>
+                </tr>
+                </thead>
+                    <tbody>
+                    {% for schedule in schedules %}
+                    <tr>
+                        <td>{{ schedule.name }}</td>
+                        <td>{{ schedule.day }}</td>
+                        <td>{{ schedule.time_start }}</td>
+                        <td>{{ schedule.time_end}}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
