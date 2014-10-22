@@ -162,7 +162,7 @@ def votation_barcamps():
     user_vote = g.user.username
     session_type = 2
     queryset = Session.query.\
-        filter(Session.active == 1,
+        filter(Session. active == 1,
                Session.session_type ==
                session_type).all()
     has_voted = SessionVoted.query.\
@@ -253,6 +253,15 @@ def dirtree():
     return render_template('frontend/dirtree.html',
                            tree=make_tree(path),
                            path_file=path)
+
+
+@bp.route('/schedule', methods=['GET', 'POST'])
+def schedule():
+    queryset = Session.query.filter(Session.active == 1).\
+        order_by(Session.day, Session.time_start).all()
+    return render_template('frontend/schedule.html',
+                           title='Agenda',
+                           schedules=queryset)
 
 
 @bp.route('/logout')
