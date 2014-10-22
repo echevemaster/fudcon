@@ -8,6 +8,7 @@ from flask.ext.login import login_required, logout_user
 from fudcon.database import db
 from fudcon.modules.contents.models import Content
 from fudcon.modules.speakers.models import Speaker
+from fudcon.modules.rooms.models import Room
 from fudcon.modules.sessions.models import Session, SessionVoted
 from fudcon.modules.users.models import User
 from fudcon.modules.users.forms import UserForm
@@ -257,7 +258,13 @@ def dirtree():
 
 @bp.route('/schedule', methods=['GET', 'POST'])
 def schedule():
-    queryset = Session.query.filter(Session.active == 1).\
+    queryset = Session.query.with_entities(Session.name,
+                                           Session.day,
+                                           Session.time_start,
+                                           Session.time_end,
+                                           Room.name.label('name_room')).\
+        filter(Session.active == 1).\
+        join(Room).\
         order_by(Session.day, Session.time_start).all()
     return render_template('frontend/schedule.html',
                            title='Agenda',

@@ -16,6 +16,7 @@
                     <th>Dia</th>
                     <th>Hora de inicio</th>
                     <th>Hora de cierre</th>
+                    <th>Lugar</th>
                 </tr>
                 </thead>
                     <tbody>
@@ -25,6 +26,7 @@
                         <td>{{ schedule.day }}</td>
                         <td>{{ schedule.time_start }}</td>
                         <td>{{ schedule.time_end}}</td>
+                        <td>{{ schedule.name_room}}</td>
                     </tr>
                     {% endfor %}
                     </tbody>
