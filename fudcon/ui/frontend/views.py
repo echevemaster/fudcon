@@ -262,6 +262,7 @@ def schedule():
                                            Session.day,
                                            Session.time_start,
                                            Session.time_end,
+                                           Session.fas,
                                            Room.name.label('name_room')).\
         filter(Session.active == 1).\
         join(Room).\
