@@ -17,12 +17,12 @@ class Config(object):
     SQLALCHEMY_ECHO = True
     FAS_OPENID_ENDPOINT = 'http://id.fedoraproject.org/'
     FAS_CHECK_CERT = True
-    FUDCON_NAME = 'Fudcon Managua'
+    FUDCON_NAME = 'FUDCon Puno'
     ADMIN_GROUP = ['fudcon']
     ITEMS_PER_PAGE = 10
     UPLOADS_FOLDER = os.path.realpath('.') + '/fudcon/static/uploads'
     TALKS_FOLDER = os.path.realpath('.') + '/fudcon/static/slides'
-    OPEN_WORKSHOP_AND_BARCAMPS = datetime.datetime(2014, 10, 20)
+    OPEN_WORKSHOP_AND_BARCAMPS = datetime.datetime(2016, 10, 13)
     ALLOWED_EXTENSIONS = set(['jpeg', 'jpg', 'gif', 'png',
                              'txt', 'pdf'])
     SOCIAL_AUTH_LOGIN_URL = '/login'
