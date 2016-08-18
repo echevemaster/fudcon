@@ -21,34 +21,41 @@
     </div>
 </div>
 
-<div class="nav">
-        <div class="row">
-        <div class="menu">
-            <ul>
-            {% if request.endpoint.startswith('admin') %}
-            <li><a href="{{ url_for('admin.index')}} ">Home</a></li>
-            <li><a href="{{ url_for('admin.pages') }}">Páginas</a></li>
-            <li><a href="{{ url_for('admin.speakers') }}">Ponentes</a></li>
-            <li><a href="{{ url_for('admin.rooms') }}">Rooms</a></li>
-            <li><a href="{{ url_for('admin.sessions') }}">Sesiones</a></li>
-            <li><a href="#" data-dropdown="hover1" data-options="is_hover:false">Votación</a></li>
-            <ul id="hover1" class="f-dropdown" data-dropdown-content>
-                <li><a href="{{ url_for('admin.votation_talks')}}">Charlas</a></li>
-            </ul>
 
-            {% else %}
-            <li><a href="{{ url_for('frontend.index') }}">Home</a></li>
-            <li><a href="{{ url_for('frontend.speakers') }}">Ponentes</a></li>
-            <li><a href="{{ url_for('frontend.sessions') }}">Sesiones</a></li>
-            <li><a href="{{ url_for('frontend.venue') }}">Venue</a></li>
-            <li><a href="{{ url_for('frontend.accomodation')}}">Alojamiento</a></li>
-            <li><a href="{{ url_for('frontend.sponsors') }}">Sponsors</a></li>
-            <li><a href="{{ url_for('frontend.schedule') }}">Cronograma</a></li>
-            {% if is_admin %}
-            <li><a href="{{ url_for('admin.index') }}">Admin</a></li>
-            {% endif %}
-            {% endif %}
+<div class="top-bar" data-topbar role="navigation">
+    <ul class="title-area">
+      <li class="name">
+        <h1><a href="#">{{ title_site }} &nbsp&nbsp&nbsp&nbsp&nbsp</a></h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+
+    <section class="top-bar-section">
+      <ul class="left">
+        {% if request.endpoint.startswith('admin') %}
+        <li><a style="background-color:blue;" href="{{ url_for('admin.index')}} ">Home</a></li>
+        <li><a href="{{ url_for('admin.pages') }}">Páginas</a></li>
+        <li><a href="{{ url_for('admin.speakers') }}">Ponentes</a></li>
+        <li><a href="{{ url_for('admin.rooms') }}">Rooms</a></li>
+        <li><a href="{{ url_for('admin.sessions') }}">Sesiones</a></li>
+        <li><a href="#" data-dropdown="hover1" data-options="is_hover:false">Votación</a></li>
+        <ul id="hover1" class="f-dropdown" data-dropdown-content>
+            <li><a href="{{ url_for('admin.votation_talks')}}">Charlas</a></li>
         </ul>
-        </div>
-    </div>
+
+        {% else %}
+        <li><a href="{{ url_for('frontend.index') }}">Home</a></li>
+        <li><a href="{{ url_for('frontend.speakers') }}">Ponentes</a></li>
+        <li><a href="{{ url_for('frontend.sessions') }}">Sesiones</a></li>
+        <li><a href="{{ url_for('frontend.venue') }}">Venue</a></li>
+        <li><a href="{{ url_for('frontend.accomodation')}}">Alojamiento</a></li>
+        <li><a href="{{ url_for('frontend.sponsors') }}">Sponsors</a></li>
+        <li><a href="{{ url_for('frontend.schedule') }}">Cronograma</a></li>
+        {% if is_admin %}
+        <li><a href="{{ url_for('admin.index') }}">Admin</a></li>
+        {% endif %}
+        {% endif %}
+      </ul>
+    </section>
+
 </div>
