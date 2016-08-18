@@ -142,3 +142,22 @@ footer {
     width:88px;
     height:auto;
 }
+
+.top-bar {
+  background-color: #193C6E;
+}
+
+.top-bar ul li h1 {
+  font-family: 'Comfortaa',sans-serif;
+  font-size: 1rem;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button){
+  background-color: #193C6E;
+  font-family: 'Comfortaa',sans-serif;
+  font-size: 1rem;
+}
+
+.top-bar.expanded .title-area {
+  background-color: #193C6E;
+}
