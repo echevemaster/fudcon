@@ -11,7 +11,7 @@ SQLAlchemy==0.9.7
 SQLAlchemy-Utils==0.26.16
 WTForms==2.0.1
 WTForms-Components==0.9.6
-Werkzeug==0.9.6
+Werkzeug==0.15.3
 alembic==0.6.6
 beautifulsoup4==4.3.2
 bunch==1.0.1
